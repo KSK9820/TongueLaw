@@ -16,6 +16,8 @@
 		6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */; };
 		6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */; };
 		6B2363BF2CB535D00008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363BE2CB535D00008AA8C /* SnapKit */; };
+		6B2363C52CB5390F0008AA8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363C42CB5390F0008AA8C /* HomeViewController.swift */; };
+		6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363C62CB539830008AA8C /* PosterCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		6B2363B32CB531670008AA8C /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignOfButton.swift; sourceTree = "<group>"; };
+		6B2363C42CB5390F0008AA8C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6B2363C62CB539830008AA8C /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 			children = (
 				53737A6D2CB5191500DDB73F /* LifeCycle */,
 				6B2363AB2CB52ABA0008AA8C /* Presentation */,
+				6B2363C12CB538CC0008AA8C /* ViewComponent */,
 				6B2363B42CB5319B0008AA8C /* Extension */,
 				53737A6E2CB5192500DDB73F /* Resource */,
 				53737A632CB510BD00DDB73F /* Info.plist */,
@@ -96,6 +101,7 @@
 		6B2363AB2CB52ABA0008AA8C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				6B2363C32CB538FF0008AA8C /* HomeViewController */,
 				6B2363B92CB532C20008AA8C /* BaseView */,
 			);
 			path = Presentation;
@@ -123,6 +129,30 @@
 				6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */,
 			);
 			path = DesignComponent;
+			sourceTree = "<group>";
+		};
+		6B2363C12CB538CC0008AA8C /* ViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363C22CB538DE0008AA8C /* Cell */,
+			);
+			path = ViewComponent;
+			sourceTree = "<group>";
+		};
+		6B2363C22CB538DE0008AA8C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363C62CB539830008AA8C /* PosterCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		6B2363C32CB538FF0008AA8C /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363C42CB5390F0008AA8C /* HomeViewController.swift */,
+			);
+			path = HomeViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,11 +232,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */,
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
 				53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */,
 				6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */,
 				53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */,
 				6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */,
+				6B2363C52CB5390F0008AA8C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
