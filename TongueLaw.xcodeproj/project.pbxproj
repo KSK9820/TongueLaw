@@ -23,6 +23,7 @@
 		53737A612CB510BD00DDB73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53737A632CB510BD00DDB73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53737A692CB510D400DDB73F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		53737A742CB52D4E00DDB73F /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,6 +41,7 @@
 		53737A492CB510BB00DDB73F = {
 			isa = PBXGroup;
 			children = (
+				53737A742CB52D4E00DDB73F /* Secrets.xcconfig */,
 				53737A692CB510D400DDB73F /* .gitignore */,
 				53737A542CB510BB00DDB73F /* TongueLaw */,
 				53737A532CB510BB00DDB73F /* Products */,
@@ -303,6 +305,7 @@
 		};
 		53737A672CB510BD00DDB73F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53737A742CB52D4E00DDB73F /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
