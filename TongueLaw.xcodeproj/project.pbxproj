@@ -12,6 +12,7 @@
 		53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53737A5E2CB510BD00DDB73F /* Assets.xcassets */; };
 		53737A622CB510BD00DDB73F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 53737A612CB510BD00DDB73F /* Base */; };
 		53737A6A2CB510D400DDB73F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 53737A692CB510D400DDB73F /* .gitignore */; };
+		6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		53737A612CB510BD00DDB73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53737A632CB510BD00DDB73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53737A692CB510D400DDB73F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,30 +58,11 @@
 			isa = PBXGroup;
 			children = (
 				53737A6D2CB5191500DDB73F /* LifeCycle */,
-				53737A6B2CB518FF00DDB73F /* Presentation */,
-				53737A712CB526FE00DDB73F /* DataBase */,
-				53737A6C2CB5190B00DDB73F /* Network */,
-				53737A702CB519C800DDB73F /* Utils */,
-				53737A6F2CB519C100DDB73F /* Extension */,
+				6B2363AB2CB52ABA0008AA8C /* Presentation */,
 				53737A6E2CB5192500DDB73F /* Resource */,
 				53737A632CB510BD00DDB73F /* Info.plist */,
 			);
 			path = TongueLaw;
-			sourceTree = "<group>";
-		};
-		53737A6B2CB518FF00DDB73F /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		53737A6C2CB5190B00DDB73F /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				53737A732CB5274500DDB73F /* DTO */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		53737A6D2CB5191500DDB73F /* LifeCycle */ = {
@@ -100,32 +83,12 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		53737A6F2CB519C100DDB73F /* Extension */ = {
+		6B2363AB2CB52ABA0008AA8C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */,
 			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		53737A702CB519C800DDB73F /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		53737A712CB526FE00DDB73F /* DataBase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataBase;
-			sourceTree = "<group>";
-		};
-		53737A732CB5274500DDB73F /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DTO;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +164,7 @@
 			files = (
 				53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */,
 				53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */,
+				6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
