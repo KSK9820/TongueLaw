@@ -11,7 +11,7 @@ extension UIButton {
     
     func buttonStyle(type: DesignOfButton) {
         var configuration = UIButton.Configuration.filled()
-        
+
         configuration.title = type.title
         configuration.titleAlignment = .center
         configuration.baseBackgroundColor = type.backGroundColor
@@ -20,9 +20,14 @@ extension UIButton {
         configuration.image = UIImage(systemName: type.imageName)
         configuration.imagePlacement = .leading
         configuration.imagePadding = 8
-        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 14)
-        
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 12)
+
+        let font = UIFont.systemFont(ofSize: 12)
+        let titleAttributes = [NSAttributedString.Key.font: font]
+        configuration.attributedTitle = AttributedString(type.title, attributes: AttributeContainer(titleAttributes))
+
         self.configuration = configuration
         layer.cornerRadius = 12
     }
+    
 }

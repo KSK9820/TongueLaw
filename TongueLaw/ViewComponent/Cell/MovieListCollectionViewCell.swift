@@ -13,7 +13,7 @@ final class MovieListCollectionViewCell: UICollectionViewCell {
     private let titleView = UITextView()
     private let playIconImageView = UIImageView()
     
-    init() {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         
         configureView()
@@ -49,18 +49,21 @@ extension MovieListCollectionViewCell: BaseViewProtocol {
         poster.layer.cornerRadius = 8
         titleView.textAlignment = .left
         playIconImageView.image = UIImage(systemName: "play.circle")
+        playIconImageView.tintColor = .black
     }
     
     func configureLayout() {
         poster.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(20)
-            make.width.equalTo(contentView.snp.width).multipliedBy(0.3)
+            make.verticalEdges.equalToSuperview().inset(4)
+            make.leading.equalToSuperview().inset(8)
+            make.height.equalTo(100)
+            make.width.equalTo(poster.snp.height).multipliedBy(1.2)
         }
         
         playIconImageView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(20)
-            make.width.equalTo(playIconImageView.snp.height)
-            make.trailing.equalToSuperview().inset(20)
+            make.size.equalTo(44)
+            make.centerY.equalTo(poster.snp.centerY)
+            make.trailing.equalToSuperview().inset(8)
         }
         
         titleView.snp.makeConstraints { make in

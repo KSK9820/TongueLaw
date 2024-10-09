@@ -15,8 +15,8 @@ final class MainRecommendCollectionViewCell: UICollectionViewCell {
     private let playButton = UIButton()
     private let addDownloadListButton = UIButton()
     
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         configureView()
     }
@@ -43,6 +43,7 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
     func configureHierarchy() {
         contentView.addSubview(poster)
         contentView.addSubview(genreTextView)
+        contentView.addSubview(buttonStackView)
         buttonStackView.addArrangedSubview(playButton)
         buttonStackView.addArrangedSubview(addDownloadListButton)
     }
@@ -52,7 +53,9 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
         poster.layer.cornerRadius = 12
         
         playButton.buttonStyle(type: .play)
-        playButton.buttonStyle(type: .downloadList)
+        addDownloadListButton.buttonStyle(type: .downloadList)
+        
+        genreTextView.text = "애니메이션 가족 코미디 드라마"
         
         buttonStackView.axis = .horizontal
         buttonStackView.spacing = 8
@@ -67,6 +70,7 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
             make.bottom.equalTo(poster.snp.bottom).inset(12)
             make.centerX.equalTo(contentView.snp.centerX)
             make.width.equalTo(contentView.snp.width).inset(8)
+            make.height.equalTo(36)
         }
         
         genreTextView.snp.makeConstraints { make in

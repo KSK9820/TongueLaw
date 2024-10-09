@@ -11,8 +11,8 @@ final class PosterCollectionViewCell: UICollectionViewCell {
     
     private let poster = UIImageView()
     
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         configureView()
     }
