@@ -24,6 +24,7 @@ extension UIButton {
 
         let font = UIFont.systemFont(ofSize: 12)
         let titleAttributes = [NSAttributedString.Key.font: font]
+        
         configuration.attributedTitle = AttributedString(type.title, attributes: AttributeContainer(titleAttributes))
 
         self.configuration = configuration
