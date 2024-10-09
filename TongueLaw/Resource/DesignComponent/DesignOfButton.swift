@@ -11,6 +11,7 @@ enum DesignOfButton {
     case play
     case downloadList
     case save
+    case cancel
     
     var title: String {
         switch self {
@@ -20,6 +21,8 @@ enum DesignOfButton {
             return "내가 찜한 리스트"
         case .save:
             return "저장"
+        case .cancel:
+            return "취소"
         }
     }
     
@@ -31,6 +34,8 @@ enum DesignOfButton {
             return "plus"
         case .save:
             return "square.and.arrow.down"
+        case .cancel:
+            return "xmark"
         }
     }
     
@@ -41,6 +46,8 @@ enum DesignOfButton {
         case .downloadList:
             return .white
         case .save:
+            return .white
+        case .cancel:
             return .white
         }
     }
@@ -53,6 +60,8 @@ enum DesignOfButton {
             return #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
         case .save:
             return #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
+        case .cancel:
+            return #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1).withAlphaComponent(0.5)
         }
     }
 }

@@ -22,6 +22,7 @@ final class MovieListCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 //MARK: - MovieListCollectionViewCell Method
@@ -69,5 +70,3 @@ extension MovieListCollectionViewCell: BaseViewProtocol {
     }
     
 }
-
-
