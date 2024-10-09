@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46D1173D2CB531F4000E3978 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 46D1173C2CB531F3000E3978 /* Secrets.xcconfig */; };
+		46D117402CB53403000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D1173F2CB53403000E3978 /* Moya */; };
+		46D117422CB53403000E3978 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117412CB53403000E3978 /* RxMoya */; };
+		46D117452CB534BE000E3978 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D117442CB534BE000E3978 /* NetworkManager.swift */; };
+		46D117472CB53563000E3978 /* TMDBRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D117462CB53563000E3978 /* TMDBRouter.swift */; };
 		53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A552CB510BB00DDB73F /* AppDelegate.swift */; };
 		53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A572CB510BB00DDB73F /* SceneDelegate.swift */; };
 		53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53737A5E2CB510BD00DDB73F /* Assets.xcassets */; };
@@ -23,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46D1173C2CB531F3000E3978 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		46D117442CB534BE000E3978 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		46D117462CB53563000E3978 /* TMDBRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBRouter.swift; sourceTree = "<group>"; };
 		53737A522CB510BB00DDB73F /* TongueLaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TongueLaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53737A552CB510BB00DDB73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53737A572CB510BB00DDB73F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,16 +54,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D117422CB53403000E3978 /* RxMoya in Frameworks */,
+				46D117402CB53403000E3978 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46D117432CB53490000E3978 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				46D117442CB534BE000E3978 /* NetworkManager.swift */,
+				46D117462CB53563000E3978 /* TMDBRouter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		53737A492CB510BB00DDB73F = {
 			isa = PBXGroup;
 			children = (
-				6B2363B32CB531670008AA8C /* Secrets.xcconfig */,
+				46D1173C2CB531F3000E3978 /* Secrets.xcconfig */,
 				53737A692CB510D400DDB73F /* .gitignore */,
 				53737A542CB510BB00DDB73F /* TongueLaw */,
 				53737A532CB510BB00DDB73F /* Products */,
@@ -73,6 +92,7 @@
 		53737A542CB510BB00DDB73F /* TongueLaw */ = {
 			isa = PBXGroup;
 			children = (
+				46D117432CB53490000E3978 /* Network */,
 				53737A6D2CB5191500DDB73F /* LifeCycle */,
 				6B2363AB2CB52ABA0008AA8C /* Presentation */,
 				6B2363C12CB538CC0008AA8C /* ViewComponent */,
@@ -179,6 +199,8 @@
 			);
 			name = TongueLaw;
 			packageProductDependencies = (
+				46D1173F2CB53403000E3978 /* Moya */,
+				46D117412CB53403000E3978 /* RxMoya */,
 			);
 			productName = TongueLaw;
 			productReference = 53737A522CB510BB00DDB73F /* TongueLaw.app */;
@@ -209,6 +231,7 @@
 			);
 			mainGroup = 53737A492CB510BB00DDB73F;
 			packageReferences = (
+				46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 53737A532CB510BB00DDB73F /* Products */;
 			projectDirPath = "";
@@ -224,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D1173D2CB531F4000E3978 /* Secrets.xcconfig in Resources */,
 				53737A6A2CB510D400DDB73F /* .gitignore in Resources */,
 				53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */,
 				53737A622CB510BD00DDB73F /* Base in Resources */,
@@ -240,9 +264,11 @@
 				6B2363CF2CB65A540008AA8C /* Identifier+Extension.swift in Sources */,
 				6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */,
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
+				46D117452CB534BE000E3978 /* NetworkManager.swift in Sources */,
 				53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */,
 				6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */,
 				6B2363CD2CB6555A0008AA8C /* MainRecommendCollectionViewCell.swift in Sources */,
+				46D117472CB53563000E3978 /* TMDBRouter.swift in Sources */,
 				53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */,
 				6B2363D22CB65CAD0008AA8C /* TitleCollectionViewHeader.swift in Sources */,
 				6B2363CB2CB53C9F0008AA8C /* MovieListCollectionViewCell.swift in Sources */,
@@ -459,6 +485,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		46D1173F2CB53403000E3978 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		46D117412CB53403000E3978 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 53737A4A2CB510BB00DDB73F /* Project object */;
 }
