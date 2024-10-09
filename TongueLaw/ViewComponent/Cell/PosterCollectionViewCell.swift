@@ -49,5 +49,4 @@ extension PosterCollectionViewCell: BaseViewProtocol {
         }
     }
     
-    
 }
