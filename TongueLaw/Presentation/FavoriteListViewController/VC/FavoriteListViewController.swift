@@ -43,7 +43,7 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
             return TitleCollectionViewHeader()
         }
         
-        header.updateContent(title: collectionViewSection.title)
+        header.updateContent(title: FavoriteListCollectionViewSections.list.title)
         
         return header
     }
@@ -53,22 +53,18 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
 //MARK: - Configuration
 extension FavoriteListViewController: BaseViewProtocol {
     
-    func configureNavigationBar() {
-        navigationItem.titleView = searchBar
-    }
     
     func configureHierarchy() {
-        view.addSubview(searchCollectionView)
+        view.addSubview(favoriteListCollectionView)
     }
     
     func configureUI() {
         view.backgroundColor = .white
-        configureSearchBar()
         configureCollectionView()
     }
     
     func configureLayout() {
-        searchCollectionView.snp.makeConstraints { make in
+        favoriteListCollectionView.snp.makeConstraints { make in
             make.directionalEdges.equalTo(view.safeAreaLayoutGuide)
         }
     }

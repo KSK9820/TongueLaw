@@ -144,7 +144,7 @@ extension SearchViewController: BaseViewProtocol {
 }
 
 //MARK: - SearchCollectionViewSections
-private enum SearchCollectionViewSections: Int, CaseIterable {
+enum SearchCollectionViewSections: Int, CaseIterable {
     
     case emptyValue
     case mola

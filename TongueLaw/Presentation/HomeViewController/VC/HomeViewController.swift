@@ -70,8 +70,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderView.identifier, for: indexPath) as? TitleHeaderView else {
-            return TitleHeaderView()
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleCollectionViewHeader.identifier, for: indexPath) as? TitleCollectionViewHeader else {
+            return TitleCollectionViewHeader()
         }
         
         if let section = HomeCollectionViewSections(rawValue: indexPath.section),
@@ -103,7 +103,7 @@ extension HomeViewController: BaseViewProtocol {
         homeCollectionView.register(MainRecommendCollectionViewCell.self, forCellWithReuseIdentifier: MainRecommendCollectionViewCell.identifier)
         homeCollectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
         
-        homeCollectionView.register(TitleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderView.identifier)
+        homeCollectionView.register(TitleCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleCollectionViewHeader.identifier)
     }
     
     func configureLayout() {
@@ -134,9 +134,9 @@ private enum HomeCollectionViewSections: Int, CaseIterable {
     var title: String? {
         switch self {
         case .recommendMovie:
-            "지금 뜨는 영화"
+            return "지금 뜨는 영화"
         case .recommendSeries:
-            "지금 뜨는 TV 시리즈"
+            return "지금 뜨는 TV 시리즈"
         default:
             return nil
         }
