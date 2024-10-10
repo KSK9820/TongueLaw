@@ -15,8 +15,6 @@
 		53737A622CB510BD00DDB73F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 53737A612CB510BD00DDB73F /* Base */; };
 		53737A6A2CB510D400DDB73F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 53737A692CB510D400DDB73F /* .gitignore */; };
 		5373FFB22CB6AD70006E54A8 /* FavoriteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5373FFB12CB6AD70006E54A8 /* FavoriteContent.swift */; };
-		53B731F22CB6B0E800D18FAB /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B731F12CB6B0E800D18FAB /* Moya */; };
-		53B731F42CB6B0E800D18FAB /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B731F32CB6B0E800D18FAB /* RxMoya */; };
 		53B731F52CB6B13A00D18FAB /* FavoriteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */; };
 		53B731F62CB6B13A00D18FAB /* FavoriteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */; };
 		53B731F82CB6B19C00D18FAB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B731F72CB6B19C00D18FAB /* CoreDataManager.swift */; };
@@ -33,8 +31,14 @@
 		6B2363E12CB770540008AA8C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363E02CB770540008AA8C /* SearchViewController.swift */; };
 		6B2363E52CB775370008AA8C /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363E42CB775370008AA8C /* FavoriteListViewController.swift */; };
 		6B2363EA2CB77F620008AA8C /* FavoriteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363E82CB77F620008AA8C /* FavoriteModel.xcdatamodeld */; };
-		6B2363ED2CB78CB40008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363EC2CB78CB40008AA8C /* SnapKit */; };
 		6B2363F02CB78CDD0008AA8C /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363EF2CB78CDD0008AA8C /* UserTabBarController.swift */; };
+		6B2363F42CB795270008AA8C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F32CB795270008AA8C /* DetailViewController.swift */; };
+		6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */; };
+		6B2363F92CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */; };
+		6B2363FC2CB7A1820008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363FB2CB7A1820008AA8C /* SnapKit */; };
+		6B2363FF2CB7A1A20008AA8C /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363FE2CB7A1A20008AA8C /* Moya */; };
+		6B2364012CB7A1A20008AA8C /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364002CB7A1A20008AA8C /* RxMoya */; };
+		6B2364032CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +70,10 @@
 		6B2363E42CB775370008AA8C /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		6B2363E92CB77F620008AA8C /* FavoriteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteModel.xcdatamodel; sourceTree = "<group>"; };
 		6B2363EF2CB78CDD0008AA8C /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
+		6B2363F32CB795270008AA8C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCastCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B2363ED2CB78CB40008AA8C /* SnapKit in Frameworks */,
-				53B731F42CB6B0E800D18FAB /* RxMoya in Frameworks */,
-				53B731F22CB6B0E800D18FAB /* Moya in Frameworks */,
+				6B2364012CB7A1A20008AA8C /* RxMoya in Frameworks */,
+				6B2363FF2CB7A1A20008AA8C /* Moya in Frameworks */,
+				6B2363FC2CB7A1820008AA8C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +189,7 @@
 				6B2363DA2CB76EF50008AA8C /* HomeViewController */,
 				6B2363DE2CB7703C0008AA8C /* SearchViewController */,
 				6B2363E22CB773C30008AA8C /* FavoriteListViewController */,
+				6B2363F12CB794F30008AA8C /* DetailViewController */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -308,6 +317,33 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		6B2363F12CB794F30008AA8C /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363F22CB795060008AA8C /* VC */,
+				6B2363F52CB797F20008AA8C /* View */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		6B2363F22CB795060008AA8C /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363F32CB795270008AA8C /* DetailViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		6B2363F52CB797F20008AA8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */,
+				6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */,
+				6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -325,9 +361,9 @@
 			);
 			name = TongueLaw;
 			packageProductDependencies = (
-				53B731F12CB6B0E800D18FAB /* Moya */,
-				53B731F32CB6B0E800D18FAB /* RxMoya */,
-				6B2363EC2CB78CB40008AA8C /* SnapKit */,
+				6B2363FB2CB7A1820008AA8C /* SnapKit */,
+				6B2363FE2CB7A1A20008AA8C /* Moya */,
+				6B2364002CB7A1A20008AA8C /* RxMoya */,
 			);
 			productName = TongueLaw;
 			productReference = 53737A522CB510BB00DDB73F /* TongueLaw.app */;
@@ -358,8 +394,8 @@
 			);
 			mainGroup = 53737A492CB510BB00DDB73F;
 			packageReferences = (
-				53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */,
-				6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6B2363FA2CB7A1820008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6B2363FD2CB7A1A20008AA8C /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 53737A532CB510BB00DDB73F /* Products */;
 			projectDirPath = "";
@@ -390,8 +426,10 @@
 			files = (
 				53B731F52CB6B13A00D18FAB /* FavoriteEntity+CoreDataClass.swift in Sources */,
 				53B731F62CB6B13A00D18FAB /* FavoriteEntity+CoreDataProperties.swift in Sources */,
+				6B2363F42CB795270008AA8C /* DetailViewController.swift in Sources */,
 				6B2363DC2CB76F450008AA8C /* HomeViewController.swift in Sources */,
 				6B2363EA2CB77F620008AA8C /* FavoriteModel.xcdatamodeld in Sources */,
+				6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */,
 				6B2363CF2CB65A540008AA8C /* ReuseableIdentifierProtocol.swift in Sources */,
 				6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */,
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
@@ -400,6 +438,7 @@
 				5373FFB22CB6AD70006E54A8 /* FavoriteContent.swift in Sources */,
 				53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */,
 				53B731FB2CB6B1B400D18FAB /* FavoriteManager.swift in Sources */,
+				6B2364032CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift in Sources */,
 				6B2363E12CB770540008AA8C /* SearchViewController.swift in Sources */,
 				6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */,
 				6B2363CD2CB6555A0008AA8C /* MainRecommendCollectionViewCell.swift in Sources */,
@@ -407,6 +446,7 @@
 				6B2363E52CB775370008AA8C /* FavoriteListViewController.swift in Sources */,
 				53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */,
 				6B2363D22CB65CAD0008AA8C /* TitleCollectionViewHeader.swift in Sources */,
+				6B2363F92CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift in Sources */,
 				6B2363CB2CB53C9F0008AA8C /* MovieListCollectionViewCell.swift in Sources */,
 				6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */,
 				53B731F82CB6B19C00D18FAB /* CoreDataManager.swift in Sources */,
@@ -624,15 +664,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.3;
-			};
-		};
-		6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		6B2363FA2CB7A1820008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -640,23 +672,31 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		6B2363FD2CB7A1A20008AA8C /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		53B731F12CB6B0E800D18FAB /* Moya */ = {
+		6B2363FB2CB7A1820008AA8C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 6B2363FA2CB7A1820008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		6B2363FE2CB7A1A20008AA8C /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B2363FD2CB7A1A20008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		53B731F32CB6B0E800D18FAB /* RxMoya */ = {
+		6B2364002CB7A1A20008AA8C /* RxMoya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 6B2363FD2CB7A1A20008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
-		};
-		6B2363EC2CB78CB40008AA8C /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
@@ -668,7 +708,7 @@
 			);
 			currentVersion = 6B2363E92CB77F620008AA8C /* FavoriteModel.xcdatamodel */;
 			name = FavoriteModel.xcdatamodeld;
-			path = /Users/choiseungbeom/Downloads/FavoriteModel.xcdatamodeld;
+			path = ../../../../../Downloads/FavoriteModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
