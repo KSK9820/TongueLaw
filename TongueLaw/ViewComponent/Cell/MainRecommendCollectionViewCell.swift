@@ -13,7 +13,7 @@ final class MainRecommendCollectionViewCell: UICollectionViewCell {
     private let genreTextView = UITextView()
     private let buttonStackView = UIStackView()
     private let playButton = UIButton()
-    private let addDownloadListButton = UIButton()
+    private let addFavoriteListButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +45,7 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
         contentView.addSubview(genreTextView)
         contentView.addSubview(buttonStackView)
         buttonStackView.addArrangedSubview(playButton)
-        buttonStackView.addArrangedSubview(addDownloadListButton)
+        buttonStackView.addArrangedSubview(addFavoriteListButton)
     }
     
     func configureUI() {
@@ -53,7 +53,7 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
         poster.layer.cornerRadius = 12
         
         playButton.buttonStyle(type: .play)
-        addDownloadListButton.buttonStyle(type: .downloadList)
+        addFavoriteListButton.buttonStyle(type: .favorite)
         
         genreTextView.text = "애니메이션 가족 코미디 드라마"
         
