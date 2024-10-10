@@ -8,20 +8,21 @@
 import Foundation
 
 // MARK: - SimilarMovieDTO
-struct SimilarMovieDTO: Codable {
+struct SimilarMovieDTO: Decodable {
     let page: Int
     let similarMovieResponse: [SimilarMovieResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case page
+        case similarMovieResponse = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
 }
 
 // MARK: - SimilarMovieResponse
-struct SimilarMovieResponse: Codable {
+struct SimilarMovieResponse: Decodable {
     let backdropPath: String?
     let genreIDs: [Int]
     let id: Int

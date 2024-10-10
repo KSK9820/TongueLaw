@@ -8,20 +8,21 @@
 import Foundation
 
 // MARK: - TrendingTvDTO
-struct TrendingTvDTO: Codable {
+struct TrendingTvDTO: Decodable {
     let page: Int
     let trendingTvResponse: [TrendingTvResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case page
+        case trendingTvResponse = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
 }
 
 // MARK: - TrendingTvResponse
-struct TrendingTvResponse: Codable {
+struct TrendingTvResponse: Decodable {
     let backdropPath: String
     let id: Int
     let name, originalName, overview, posterPath: String

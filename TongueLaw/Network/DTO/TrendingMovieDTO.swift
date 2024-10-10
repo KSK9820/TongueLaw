@@ -8,25 +8,25 @@
 import Foundation
 
 // MARK: - TrendingMovieDTO
-struct TrendingMovieDTO: Codable {
+struct TrendingMovieDTO: Decodable {
     let page: Int
     let trendingResponse: [TrendingMovieResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
-        case page, resultss
+        case page
+        case trendingResponse = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
 }
 
 // MARK: - TrendingMovieResponse
-struct TrendingMovieResponse: Codable {
+struct TrendingMovieResponse: Decodable {
     let backdropPath: String
     let id: Int
     let title, originalTitle, overview, posterPath: String
     let genreIDs: [Int]
-    let releaseDate: String
     let voteAverage: Double
     let video: Bool
 

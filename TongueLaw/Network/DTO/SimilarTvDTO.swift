@@ -7,22 +7,22 @@
 
 import Foundation
 
-
 // MARK: - SimilarTvDTO
-struct SimilarTvDTO: Codable {
+struct SimilarTvDTO: Decodable {
     let page: Int
     let similarTvResponse: [SimilarTvResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case page
+        case similarTvResponse = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
 }
 
 // MARK: - SimilarTvResponse
-struct SimilarTvResponse: Codable {
+struct SimilarTvResponse: Decodable {
     let backdropPath: String?
     let genreIDs: [Int]
     let id: Int

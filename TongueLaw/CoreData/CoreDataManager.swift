@@ -12,7 +12,7 @@ final class CoreDataManager {
     static let shared = CoreDataManager()
     
     var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "FavoriteModel")
+        let container = NSPersistentContainer(name: "FavoriteDataModel")
         container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Unresolved error \(error.localizedDescription)")

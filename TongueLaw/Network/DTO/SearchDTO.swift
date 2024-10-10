@@ -8,20 +8,21 @@
 import Foundation
 
 // MARK: - SearchDTO
-struct SearchDTO: Codable {
+struct SearchDTO: Decodable {
     let page: Int
     let searchResponse: [SearchResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case page
+        case searchResponse = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
 }
 
 // MARK: - SearchResponse
-struct SearchResponse: Codable {
+struct SearchResponse: Decodable {
     let backdropPath: String
     let genreIDs: [Int]
     let id: Int
