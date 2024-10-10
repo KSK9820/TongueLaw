@@ -70,7 +70,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderView.identifier, for: indexPath) as? TitleHeaderView else {
             return TitleHeaderView()
         }
@@ -90,13 +89,6 @@ extension HomeViewController: BaseViewProtocol {
     
     func configureNavigationBar() {
         
-//        let searchItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
-//                                         style: .plain,
-//                                         target: self,
-//                                         action: #selector(searchButtonClicked))
-//        searchItem.tintColor = .baseFont
-//
-//        navigationItem.rightBarButtonItem = searchItem
     }
     
     func configureHierarchy() {
@@ -132,6 +124,7 @@ extension HomeViewController: BaseViewProtocol {
     
 }
 
+//MARK: - HomeCollectionViewSections
 private enum HomeCollectionViewSections: Int, CaseIterable {
     
     case main
