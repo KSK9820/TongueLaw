@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46D1173D2CB531F4000E3978 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 46D1173C2CB531F3000E3978 /* Secrets.xcconfig */; };
-		46D117402CB53403000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D1173F2CB53403000E3978 /* Moya */; };
-		46D117422CB53403000E3978 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117412CB53403000E3978 /* RxMoya */; };
 		46D117452CB534BE000E3978 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D117442CB534BE000E3978 /* NetworkManager.swift */; };
 		46D117472CB53563000E3978 /* TMDBRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D117462CB53563000E3978 /* TMDBRouter.swift */; };
 		53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A552CB510BB00DDB73F /* AppDelegate.swift */; };
@@ -17,6 +14,14 @@
 		53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53737A5E2CB510BD00DDB73F /* Assets.xcassets */; };
 		53737A622CB510BD00DDB73F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 53737A612CB510BD00DDB73F /* Base */; };
 		53737A6A2CB510D400DDB73F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 53737A692CB510D400DDB73F /* .gitignore */; };
+		5373FFA52CB6AB37006E54A8 /* FavoriteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373FFA32CB6AB37006E54A8 /* FavoriteModel.xcdatamodeld */; };
+		5373FFB22CB6AD70006E54A8 /* FavoriteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5373FFB12CB6AD70006E54A8 /* FavoriteContent.swift */; };
+		53B731F22CB6B0E800D18FAB /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B731F12CB6B0E800D18FAB /* Moya */; };
+		53B731F42CB6B0E800D18FAB /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B731F32CB6B0E800D18FAB /* RxMoya */; };
+		53B731F52CB6B13A00D18FAB /* FavoriteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */; };
+		53B731F62CB6B13A00D18FAB /* FavoriteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */; };
+		53B731F82CB6B19C00D18FAB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B731F72CB6B19C00D18FAB /* CoreDataManager.swift */; };
+		53B731FB2CB6B1B400D18FAB /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B731FA2CB6B1B400D18FAB /* FavoriteManager.swift */; };
 		6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */; };
 		6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */; };
 		6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */; };
@@ -28,9 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46D1173C2CB531F3000E3978 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		46D117442CB534BE000E3978 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		46D117462CB53563000E3978 /* TMDBRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBRouter.swift; sourceTree = "<group>"; };
+		536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		53737A522CB510BB00DDB73F /* TongueLaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TongueLaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53737A552CB510BB00DDB73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53737A572CB510BB00DDB73F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +44,11 @@
 		53737A612CB510BD00DDB73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53737A632CB510BD00DDB73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53737A692CB510D400DDB73F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5373FFA42CB6AB37006E54A8 /* FavoriteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteModel.xcdatamodel; sourceTree = "<group>"; };
+		5373FFB12CB6AD70006E54A8 /* FavoriteContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteContent.swift; sourceTree = "<group>"; };
+		538E6F332CB69A2C00070B32 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		53B731F72CB6B19C00D18FAB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		53B731FA2CB6B1B400D18FAB /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
 		6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 		6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignOfButton.swift; sourceTree = "<group>"; };
@@ -53,8 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D117422CB53403000E3978 /* RxMoya in Frameworks */,
-				46D117402CB53403000E3978 /* Moya in Frameworks */,
+				53B731F42CB6B0E800D18FAB /* RxMoya in Frameworks */,
+				53B731F22CB6B0E800D18FAB /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +84,7 @@
 		53737A492CB510BB00DDB73F = {
 			isa = PBXGroup;
 			children = (
-				46D1173C2CB531F3000E3978 /* Secrets.xcconfig */,
+				538E6F332CB69A2C00070B32 /* Secrets.xcconfig */,
 				53737A692CB510D400DDB73F /* .gitignore */,
 				53737A542CB510BB00DDB73F /* TongueLaw */,
 				53737A532CB510BB00DDB73F /* Products */,
@@ -91,6 +102,9 @@
 		53737A542CB510BB00DDB73F /* TongueLaw */ = {
 			isa = PBXGroup;
 			children = (
+				53B731F92CB6B1A500D18FAB /* Service */,
+				5373FFAE2CB6ACC2006E54A8 /* DataModel */,
+				538E6F342CB69A5400070B32 /* CoreData */,
 				6B2363D82CB75B210008AA8C /* Utils */,
 				46D117432CB53490000E3978 /* Network */,
 				53737A6D2CB5191500DDB73F /* LifeCycle */,
@@ -120,6 +134,33 @@
 				53737A5E2CB510BD00DDB73F /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		5373FFAE2CB6ACC2006E54A8 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5373FFB12CB6AD70006E54A8 /* FavoriteContent.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		538E6F342CB69A5400070B32 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */,
+				536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */,
+				5373FFA32CB6AB37006E54A8 /* FavoriteModel.xcdatamodeld */,
+				53B731F72CB6B19C00D18FAB /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		53B731F92CB6B1A500D18FAB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				53B731FA2CB6B1B400D18FAB /* FavoriteManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		6B2363AB2CB52ABA0008AA8C /* Presentation */ = {
@@ -214,8 +255,8 @@
 			);
 			name = TongueLaw;
 			packageProductDependencies = (
-				46D1173F2CB53403000E3978 /* Moya */,
-				46D117412CB53403000E3978 /* RxMoya */,
+				53B731F12CB6B0E800D18FAB /* Moya */,
+				53B731F32CB6B0E800D18FAB /* RxMoya */,
 			);
 			productName = TongueLaw;
 			productReference = 53737A522CB510BB00DDB73F /* TongueLaw.app */;
@@ -246,7 +287,7 @@
 			);
 			mainGroup = 53737A492CB510BB00DDB73F;
 			packageReferences = (
-				46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */,
+				53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 53737A532CB510BB00DDB73F /* Products */;
 			projectDirPath = "";
@@ -262,7 +303,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D1173D2CB531F4000E3978 /* Secrets.xcconfig in Resources */,
 				53737A6A2CB510D400DDB73F /* .gitignore in Resources */,
 				53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */,
 				53737A622CB510BD00DDB73F /* Base in Resources */,
@@ -276,11 +316,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B731F52CB6B13A00D18FAB /* FavoriteEntity+CoreDataClass.swift in Sources */,
+				53B731F62CB6B13A00D18FAB /* FavoriteEntity+CoreDataProperties.swift in Sources */,
 				6B2363CF2CB65A540008AA8C /* ReuseableIdentifierProtocol.swift in Sources */,
 				6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */,
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
 				46D117452CB534BE000E3978 /* NetworkManager.swift in Sources */,
+				5373FFB22CB6AD70006E54A8 /* FavoriteContent.swift in Sources */,
 				53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */,
+				53B731FB2CB6B1B400D18FAB /* FavoriteManager.swift in Sources */,
 				6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */,
 				6B2363CD2CB6555A0008AA8C /* MainRecommendCollectionViewCell.swift in Sources */,
 				46D117472CB53563000E3978 /* TMDBRouter.swift in Sources */,
@@ -288,6 +332,8 @@
 				6B2363D22CB65CAD0008AA8C /* TitleCollectionViewHeader.swift in Sources */,
 				6B2363CB2CB53C9F0008AA8C /* MovieListCollectionViewCell.swift in Sources */,
 				6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */,
+				53B731F82CB6B19C00D18FAB /* CoreDataManager.swift in Sources */,
+				5373FFA52CB6AB37006E54A8 /* FavoriteModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,9 +548,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */ = {
+		53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya";
+			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.3;
@@ -513,17 +559,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		46D1173F2CB53403000E3978 /* Moya */ = {
+		53B731F12CB6B0E800D18FAB /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		46D117412CB53403000E3978 /* RxMoya */ = {
+		53B731F32CB6B0E800D18FAB /* RxMoya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 46D1173E2CB53403000E3978 /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 53B731F02CB6B0E800D18FAB /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5373FFA32CB6AB37006E54A8 /* FavoriteModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5373FFA42CB6AB37006E54A8 /* FavoriteModel.xcdatamodel */,
+			);
+			currentVersion = 5373FFA42CB6AB37006E54A8 /* FavoriteModel.xcdatamodel */;
+			name = FavoriteModel.xcdatamodeld;
+			path = "/Users/sk/Desktop/메모리스/포트폴리오/TongueLaw/TongueLaw/CoreData/FavoriteModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 53737A4A2CB510BB00DDB73F /* Project object */;
 }
