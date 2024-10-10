@@ -18,76 +18,60 @@ enum DesignOfButton {
     var title: String {
         switch self {
         case .play:
-            return "재생"
-            
+            "재생"
         case .downloadList:
-            return "내가 찜한 리스트"
-            
+            "내가 찜한 리스트"
         case .save:
-            return "저장"
-            
+            "저장"
         case .cancel:
-            return "취소"
-            
+            "취소"
         case .search:
-            return "검색"
+            "검색"
         }
     }
     
     var imageName: String {
         switch self {
         case .play:
-            return "play.fill"
-            
+            "play.fill"
         case .downloadList:
-            return "plus"
-            
+            "plus"
         case .save:
-            return "square.and.arrow.down"
-            
+            "square.and.arrow.down"
         case .cancel:
-            return "xmark"
-            
+            "xmark"
         case .search:
-            return "magnifyingglass"
+            "magnifyingglass"
         }
     }
     
     var tintColor: UIColor {
         switch self {
         case .play:
-            return .black
-            
+            .black
         case .downloadList:
-            return .white
-            
+            .white
         case .save:
-            return .white
-            
+            .white
         case .cancel:
-            return .white
-            
+            .white
         case .search:
-            return .white
+            .white
         }
     }
     
     var backGroundColor: UIColor {
         switch self {
         case .play:
-            return .white
-            
+            .white
         case .downloadList:
-            return #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
-            
+             #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
         case .save:
-            return #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
-            
+             #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
         case .cancel:
-            return #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1).withAlphaComponent(0.5)
-            
+             #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1).withAlphaComponent(0.5)
         case .search:
-            return .clear
+            .clear
         }
     }
     
