@@ -136,6 +136,7 @@ extension DetailViewController: BaseViewProtocol {
     }
     
     func configureUI() {
+        view.backgroundColor = .white
         poster.backgroundColor = .gray
         configureCollectionView()
     }

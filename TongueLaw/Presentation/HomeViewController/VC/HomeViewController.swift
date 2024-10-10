@@ -82,6 +82,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return header
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+    
 }
 
 //MARK: - HomeViewController Configuration
@@ -96,6 +100,7 @@ extension HomeViewController: BaseViewProtocol {
     }
     
     func configureUI() {
+        view.backgroundColor = .white
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         homeCollectionView.showsVerticalScrollIndicator = false
