@@ -10,7 +10,7 @@ import UIKit
 enum DesignOfButton {
     
     case play
-    case downloadList
+    case favorite
     case save
     case cancel
     case search
@@ -19,7 +19,7 @@ enum DesignOfButton {
         switch self {
         case .play:
             "재생"
-        case .downloadList:
+        case .favorite:
             "내가 찜한 리스트"
         case .save:
             "저장"
@@ -34,7 +34,7 @@ enum DesignOfButton {
         switch self {
         case .play:
             "play.fill"
-        case .downloadList:
+        case .favorite:
             "plus"
         case .save:
             "square.and.arrow.down"
@@ -49,7 +49,7 @@ enum DesignOfButton {
         switch self {
         case .play:
             .black
-        case .downloadList:
+        case .favorite:
             .white
         case .save:
             .white
@@ -64,7 +64,7 @@ enum DesignOfButton {
         switch self {
         case .play:
             .white
-        case .downloadList:
+        case .favorite:
              #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
         case .save:
              #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
