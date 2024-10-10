@@ -7,43 +7,69 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class FavoriteListViewController: UIViewController {
     
     private lazy var favoriteListCollectionView = UICollectionView(frame: .zero,
                                                                    collectionViewLayout: createCollectionViewLayout())
+    private let viewModel = FavoriteListViewModel()
+    private var swipeAction = PublishSubject<IndexPath>()
+    private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureView()
+        bind()
     }
     
+    private func bind() {
+        let load = BehaviorSubject<Void>(value: ())
+        
+        let input = FavoriteListViewModel.Input(fetchData: load, deleteSwipe: swipeAction)
+        let output = viewModel.transform(input)
+        
+        output.list
+            .bind(with: self, onNext: { owner, value in
+                owner.favoriteListCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        output.deleteComplete
+            .bind(with: self) { owner, value in
+                owner.favoriteListCollectionView.deleteItems(at: [value])
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 //MARK: - CollectionViewDelegate, CollectionViewDataSource
 
-extension FavoriteListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension FavoriteListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        viewModel.favoriteList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.identifier, for: indexPath) as? MovieListCollectionViewCell else {
             return MovieListCollectionViewCell()
         }
+        
+        cell.setFavoriteContent(viewModel.favoriteList[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleCollectionViewHeader.identifier, for: indexPath) as? TitleCollectionViewHeader else {
-            return TitleCollectionViewHeader()
+            return UICollectionReusableView()
         }
         
-        header.updateContent(title: FavoriteListCollectionViewSections.list.title)
+        header.updateContent(title: FavoriteListCollectionViewSections.list(deleteAction: { _ in
+           
+        }).title)
         
         return header
     }
@@ -56,7 +82,6 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
 
 //MARK: - Configuration
 extension FavoriteListViewController: BaseViewProtocol {
-    
     
     func configureHierarchy() {
         view.addSubview(favoriteListCollectionView)
@@ -74,7 +99,6 @@ extension FavoriteListViewController: BaseViewProtocol {
     }
     
     private func configureCollectionView() {
-        favoriteListCollectionView.delegate = self
         favoriteListCollectionView.dataSource = self
         
         favoriteListCollectionView.register(MovieListCollectionViewCell.self, forCellWithReuseIdentifier: MovieListCollectionViewCell.identifier)
@@ -82,50 +106,60 @@ extension FavoriteListViewController: BaseViewProtocol {
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
-        FavoriteListCollectionViewSections.list.layout
+        FavoriteListCollectionViewSections.list { [weak self] indexPath in
+            guard let self else { return }
+            
+            self.swipeAction.onNext(indexPath)
+        }.layout
     }
     
 }
 
-//MARK: - FavoriteListCollectionViewSections
-private enum FavoriteListCollectionViewSections {
+extension FavoriteListViewController {
     
-    case list
-    
-    var title: String {
-        switch self {
-        case .list:
-            "영화 시리즈"
+    enum FavoriteListCollectionViewSections {
+        
+        case list(deleteAction: (IndexPath) -> ())
+        
+        var title: String {
+            switch self {
+            case .list:
+                "영화 시리즈"
+            }
         }
-    }
-    
-    var layout: UICollectionViewLayout {
-        switch self {
-        case .list:
-            var layoutConfiguration = UICollectionLayoutListConfiguration(appearance: .grouped)
-            
-            layoutConfiguration.trailingSwipeActionsConfigurationProvider = { indexPath in
+        
+        var layout: UICollectionViewLayout {
+            switch self {
+            case .list(let delete):
+                var layoutConfiguration = UICollectionLayoutListConfiguration(appearance: .grouped)
                 
-                let deleteAction = UIContextualAction(style: .normal,
-                                                      title: nil) { action, view, completion in
-                    // 삭제로직
-                    completion(true)
+                layoutConfiguration.trailingSwipeActionsConfigurationProvider = { indexPath in
+                    
+                    let deleteAction = UIContextualAction(style: .normal,
+                                                          title: nil) { action, view, completion in
+                        delete(indexPath)
+                        completion(true)
+                    }
+                    
+                    deleteAction.image = UIImage(systemName: "trash")
+                    deleteAction.backgroundColor = .red
+                    
+                    let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+                    configuration.performsFirstActionWithFullSwipe = false
+                    
+                    return configuration
                 }
                 
-                deleteAction.image = UIImage(systemName: "trash")
-                deleteAction.backgroundColor = .red
+                layoutConfiguration.showsSeparators = false
+                layoutConfiguration.headerMode = .supplementary
+                layoutConfiguration.backgroundColor = .systemBackground
                 
-                let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-                configuration.performsFirstActionWithFullSwipe = false
+                let layout = UICollectionViewCompositionalLayout.list(using: layoutConfiguration)
                 
-                return configuration
+                return layout
             }
-            
-            layoutConfiguration.showsSeparators = false
-            let layout = UICollectionViewCompositionalLayout.list(using: layoutConfiguration)
-            
-            return layout
         }
+        
     }
     
 }

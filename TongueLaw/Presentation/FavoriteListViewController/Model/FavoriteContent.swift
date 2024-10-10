@@ -8,6 +8,7 @@
 import Foundation
 
 struct FavoriteContent {
+    
     let id: String
     let title: String?
     let image: Data?
