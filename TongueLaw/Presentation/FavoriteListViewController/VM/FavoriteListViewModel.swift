@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class FavoriteListViewModel {
+final class FavoriteListViewModel `{
     
     private let coredataManager = FavoriteManager()
     private let disposeBag = DisposeBag()
@@ -21,7 +21,6 @@ final class FavoriteListViewModel {
     }
     
     struct Output {
-//        let headerTitle: BehaviorSubject<String>
         let list: PublishSubject<Void>
         let deleteComplete: PublishSubject<IndexPath>
     }
@@ -51,6 +50,5 @@ final class FavoriteListViewModel {
         
         return Output(list: readData, deleteComplete: deleteData)
     }
-    
     
 }
