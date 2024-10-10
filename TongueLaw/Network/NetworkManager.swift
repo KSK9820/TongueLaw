@@ -13,9 +13,37 @@ import RxMoya
 enum APIError: Error {
     case unknownResponse
     case bodyEmpty
-    case notUserWrongPassword
     case other(Error)
+    case badRequest
+    case unauthorized
+
+    init(statusCode: Int) {
+        switch statusCode {
+        case 400:
+            self = .bodyEmpty
+        case 401:
+            self = .badRequest
+        default:
+            self = .unknownResponse
+        }
+    }
+
+    var errorMessage: String {
+        switch self {
+        case .unknownResponse:
+            return "알 수 없는 오류가 발생했습니다."
+        case .bodyEmpty:
+            return "요청 본문이 비어 있습니다."
+        case .badRequest:
+            return "잘못된 요청입니다."
+        case .unauthorized:
+            return "인증이 필요합니다."
+        case .other(let error):
+            return error.localizedDescription
+        }
+    }
 }
+
 
 final class NetworkManager {
     
@@ -25,54 +53,49 @@ final class NetworkManager {
     
     private let provider = MoyaProvider<TMDBRouter>()
     
-    func searchMovie(searchQuery: String, completion: @escaping (SearchResponse?, Int?) -> Void) {
-        provider.rx.request(.searchMovie(searchQuery: searchQuery))
-            .map(SearchResponse.self)
-            .subscribe { event in
-                switch event {
-                case .success(let response):
-                    completion(response, 200)
-                case .failure(let error):
-                    completion(nil, error.asAFError?.responseCode)
+    func requestTMDB<T: Decodable>(
+        endpoint: TMDBRouter,
+        type: T.Type,
+        view: UIViewController? = nil
+    ) -> Single<Result<T, APIError>> {
+        
+        return Single.create { observer -> Disposable in
+            self.provider.rx.request(endpoint)
+                .subscribe { result in
+                    switch result {
+                    case .success(let response):
+                        do {
+                            let filteredResponse = try response.filterSuccessfulStatusCodes()
+                            let decodedResponse = try JSONDecoder().decode(T.self, from: filteredResponse.data)
+                            observer(.success(.success(decodedResponse)))
+                        } catch {
+                            let apiError = APIError(statusCode: response.statusCode)
+                            observer(.success(.failure(apiError)))
+                        }
+                    case .failure(let error):
+                        observer(.success(.failure(.other(error))))
+                    }
                 }
-            }
-            .disposed(by: disposeBag)
+                .disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
     }
     
-    func requestTMDB<T: Decodable>(
-            endpoint: Router, // Moya의 TargetType에 해당하는 Router
-            type: T.Type, // 디코딩할 모델 타입
-            view: UIViewController? = nil // 오류 핸들링을 위한 UIViewController (옵셔널)
-        ) -> Single<Result<T, APIError>> {
-            
-            return Single.create { observer -> Disposable in
-                // Moya의 provider를 통해 요청을 보냄
-                self.provider.rx.request(endpoint)
-                    .subscribe { result in
-                        switch result {
-                        case .success(let response):
-                            do {
-                                let filteredResponse = try response.filterSuccessfulStatusCodes() // 상태 코드가 200~299일 경우만 통과
-                                let decodedResponse = try JSONDecoder().decode(T.self, from: filteredResponse.data)
-                                print("요청 성공: \(type)")
-                                observer(.success(.success(decodedResponse)))
-                            } catch {
-                                print("디코딩 실패 또는 상태 코드 오류: \(error)")
-                                self.errorHandler(statusCode: response.statusCode, view: view)
-                                observer(.success(.failure(.unknownResponse)))
-                            }
-                        case .failure(let error):
-                            print("네트워크 실패: \(error)")
-                            self.errorHandler(statusCode: nil, view: view)
-                            observer(.success(.failure(.other(error))))
-                        }
-                    }
-                    .disposed(by: self.disposeBag)
-                
-                return Disposables.create()
+    private func errorHandler(statusCode: Int?, view: UIViewController?) {
+        if let code = statusCode {
+            switch code {
+            case 400:
+                print("잘못된 요청 - Bad Request")
+            case 401:
+                print("인증 오류 - Unauthorized")
+            default:
+                print("기타 오류 발생 - \(code)")
             }
+        } else {
+            print("알 수 없는 오류 발생")
         }
-        
-
+    }
+    
     
 }
