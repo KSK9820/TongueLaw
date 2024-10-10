@@ -45,6 +45,13 @@
 		6B2363E52CB775370008AA8C /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363E42CB775370008AA8C /* FavoriteListViewController.swift */; };
 		6B2363ED2CB78CB40008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363EC2CB78CB40008AA8C /* SnapKit */; };
 		6B2363F02CB78CDD0008AA8C /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363EF2CB78CDD0008AA8C /* UserTabBarController.swift */; };
+		6B2363F42CB795270008AA8C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F32CB795270008AA8C /* DetailViewController.swift */; };
+		6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */; };
+		6B2363F92CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */; };
+		6B2363FC2CB7A1820008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363FB2CB7A1820008AA8C /* SnapKit */; };
+		6B2363FF2CB7A1A20008AA8C /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363FE2CB7A1A20008AA8C /* Moya */; };
+		6B2364012CB7A1A20008AA8C /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364002CB7A1A20008AA8C /* RxMoya */; };
+		6B2364032CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +90,10 @@
 		6B2363E02CB770540008AA8C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6B2363E42CB775370008AA8C /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		6B2363EF2CB78CDD0008AA8C /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
+		6B2363F32CB795270008AA8C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCastCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +226,7 @@
 				6B2363DA2CB76EF50008AA8C /* HomeViewController */,
 				6B2363DE2CB7703C0008AA8C /* SearchViewController */,
 				6B2363E22CB773C30008AA8C /* FavoriteListViewController */,
+				6B2363F12CB794F30008AA8C /* DetailViewController */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -342,6 +354,33 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		6B2363F12CB794F30008AA8C /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363F22CB795060008AA8C /* VC */,
+				6B2363F52CB797F20008AA8C /* View */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		6B2363F22CB795060008AA8C /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363F32CB795270008AA8C /* DetailViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		6B2363F52CB797F20008AA8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */,
+				6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */,
+				6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -427,7 +466,10 @@
 				53B731F52CB6B13A00D18FAB /* FavoriteEntity+CoreDataClass.swift in Sources */,
 				46D1175A2CB798B7000E3978 /* GenreDTO.swift in Sources */,
 				53B731F62CB6B13A00D18FAB /* FavoriteEntity+CoreDataProperties.swift in Sources */,
+				6B2363F42CB795270008AA8C /* DetailViewController.swift in Sources */,
 				6B2363DC2CB76F450008AA8C /* HomeViewController.swift in Sources */,
+				6B2363EA2CB77F620008AA8C /* FavoriteModel.xcdatamodeld in Sources */,
+				6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */,
 				6B2363CF2CB65A540008AA8C /* ReuseableIdentifierProtocol.swift in Sources */,
 				6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */,
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
@@ -438,6 +480,7 @@
 				53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */,
 				46D1177C2CB7BC47000E3978 /* FavoriteDataModel.xcdatamodeld in Sources */,
 				53B731FB2CB6B1B400D18FAB /* FavoriteManager.swift in Sources */,
+				6B2364032CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift in Sources */,
 				6B2363E12CB770540008AA8C /* SearchViewController.swift in Sources */,
 				6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */,
 				6B2363CD2CB6555A0008AA8C /* MainRecommendCollectionViewCell.swift in Sources */,
@@ -447,6 +490,7 @@
 				46D1175C2CB798F7000E3978 /* SimilarMovieDTO.swift in Sources */,
 				46D1175E2CB79907000E3978 /* SimilarTvDTO.swift in Sources */,
 				6B2363D22CB65CAD0008AA8C /* TitleCollectionViewHeader.swift in Sources */,
+				6B2363F92CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift in Sources */,
 				6B2363CB2CB53C9F0008AA8C /* MovieListCollectionViewCell.swift in Sources */,
 				46D117532CB79426000E3978 /* TrendingTvDTO.swift in Sources */,
 				46D117512CB791AD000E3978 /* SearchDTO.swift in Sources */,
@@ -684,6 +728,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		6B2363FD2CB7A1A20008AA8C /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -701,14 +753,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Moya;
 		};
-		53B731F32CB6B0E800D18FAB /* RxMoya */ = {
+		6B2364002CB7A1A20008AA8C /* RxMoya */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 6B2363FD2CB7A1A20008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
-		};
-		6B2363EC2CB78CB40008AA8C /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

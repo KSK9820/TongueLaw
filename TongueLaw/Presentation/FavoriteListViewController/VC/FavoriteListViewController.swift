@@ -48,6 +48,10 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
         return header
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+    
 }
 
 //MARK: - Configuration
