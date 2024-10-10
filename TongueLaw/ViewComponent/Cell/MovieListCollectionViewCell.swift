@@ -10,7 +10,7 @@ import UIKit
 final class MovieListCollectionViewCell: UICollectionViewCell {
     
     private let poster = UIImageView()
-    private let titleView = UITextView()
+    private let titleView = UILabel()
     private let playIconImageView = UIImageView()
     
     override init(frame: CGRect) {
@@ -33,6 +33,15 @@ extension MovieListCollectionViewCell {
         
     }
     
+    func setFavoriteContent(_ content: FavoriteContent) {
+        if let imageData = content.image {
+            poster.image = UIImage(data: imageData)
+        }
+        
+        if let title = content.title {
+            titleView.text = title
+        }
+    }
 }
 
 //MARK: - MovieListCollectionViewCell Configuration
@@ -69,6 +78,7 @@ extension MovieListCollectionViewCell: BaseViewProtocol {
         titleView.snp.makeConstraints { make in
             make.leading.equalTo(poster.snp.trailing).offset(20)
             make.trailing.equalTo(playIconImageView.snp.leading).inset(20)
+            make.centerY.equalTo(poster.snp.centerY)
         }
     }
     
