@@ -19,8 +19,6 @@
 		46D117602CB7A215000E3978 /* CreditsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D1175F2CB7A215000E3978 /* CreditsDTO.swift */; };
 		46D117742CB7BA06000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B731F12CB6B0E800D18FAB /* Moya */; };
 		46D117752CB7BA06000E3978 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		46D1177F2CB7C040000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D1177E2CB7C040000E3978 /* Moya */; };
-		46D117812CB7C040000E3978 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117802CB7C040000E3978 /* RxMoya */; };
 		53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A552CB510BB00DDB73F /* AppDelegate.swift */; };
 		53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A572CB510BB00DDB73F /* SceneDelegate.swift */; };
 		53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53737A5E2CB510BD00DDB73F /* Assets.xcassets */; };
@@ -33,9 +31,6 @@
 		53B731FB2CB6B1B400D18FAB /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B731FA2CB6B1B400D18FAB /* FavoriteManager.swift */; };
 		53FAB4862CB792DC005C4D34 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		53FAB4892CB7934D005C4D34 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FAB4882CB7934D005C4D34 /* FavoriteListViewModel.swift */; };
-		53FAB48C2CB7949A005C4D34 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 53FAB48B2CB7949A005C4D34 /* RxCocoa */; };
-		53FAB48E2CB7949A005C4D34 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 53FAB48D2CB7949A005C4D34 /* RxSwift */; };
-		53FAB49A2CB7D0A6005C4D34 /* FavoriteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53FAB4982CB7D0A6005C4D34 /* FavoriteDataModel.xcdatamodeld */; };
 		6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */; };
 		6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */; };
 		6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */; };
@@ -47,12 +42,19 @@
 		6B2363DC2CB76F450008AA8C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363DB2CB76F450008AA8C /* HomeViewController.swift */; };
 		6B2363E12CB770540008AA8C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363E02CB770540008AA8C /* SearchViewController.swift */; };
 		6B2363E52CB775370008AA8C /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363E42CB775370008AA8C /* FavoriteListViewController.swift */; };
-		6B2363ED2CB78CB40008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2363EC2CB78CB40008AA8C /* SnapKit */; };
 		6B2363F02CB78CDD0008AA8C /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363EF2CB78CDD0008AA8C /* UserTabBarController.swift */; };
 		6B2363F42CB795270008AA8C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F32CB795270008AA8C /* DetailViewController.swift */; };
 		6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */; };
 		6B2363F92CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */; };
 		6B2364032CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */; };
+		6B23640A2CB7D3E70008AA8C /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364092CB7D3E70008AA8C /* Moya */; };
+		6B23640C2CB7D3E70008AA8C /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B23640B2CB7D3E70008AA8C /* RxMoya */; };
+		6B23640F2CB7D3F30008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B23640E2CB7D3F30008AA8C /* SnapKit */; };
+		6B2364122CB7D4080008AA8C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364112CB7D4080008AA8C /* RxCocoa */; };
+		6B2364142CB7D4080008AA8C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364132CB7D4080008AA8C /* RxSwift */; };
+		6B2364182CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B2364162CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld */; };
+		6B23641C2CB7D5710008AA8C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B23641B2CB7D5710008AA8C /* HomeViewModel.swift */; };
+		6B23641F2CB7DE720008AA8C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B23641E2CB7DE720008AA8C /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +67,6 @@
 		46D1175B2CB798F7000E3978 /* SimilarMovieDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieDTO.swift; sourceTree = "<group>"; };
 		46D1175D2CB79907000E3978 /* SimilarTvDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarTvDTO.swift; sourceTree = "<group>"; };
 		46D1175F2CB7A215000E3978 /* CreditsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsDTO.swift; sourceTree = "<group>"; };
-		46D117762CB7BA34000E3978 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		53737A522CB510BB00DDB73F /* TongueLaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TongueLaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +80,6 @@
 		53B731F72CB6B19C00D18FAB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		53B731FA2CB6B1B400D18FAB /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
 		53FAB4882CB7934D005C4D34 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
-		53FAB4992CB7D0A6005C4D34 /* FavoriteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteModel.xcdatamodel; sourceTree = "<group>"; };
 		6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 		6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignOfButton.swift; sourceTree = "<group>"; };
@@ -96,6 +96,9 @@
 		6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCastCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B2364152CB7D4A10008AA8C /* Secretes.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secretes.xcconfig; sourceTree = "<group>"; };
+		6B2364172CB7D5290008AA8C /* FavoriteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteModel.xcdatamodel; sourceTree = "<group>"; };
+		6B23641B2CB7D5710008AA8C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,13 +106,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D117812CB7C040000E3978 /* RxMoya in Frameworks */,
+				6B2364122CB7D4080008AA8C /* RxCocoa in Frameworks */,
 				46D117752CB7BA06000E3978 /* (null) in Frameworks */,
 				46D117742CB7BA06000E3978 /* Moya in Frameworks */,
-				46D1177F2CB7C040000E3978 /* Moya in Frameworks */,
-				6B2363ED2CB78CB40008AA8C /* SnapKit in Frameworks */,
-				53FAB48E2CB7949A005C4D34 /* RxSwift in Frameworks */,
-				53FAB48C2CB7949A005C4D34 /* RxCocoa in Frameworks */,
+				6B23640C2CB7D3E70008AA8C /* RxMoya in Frameworks */,
+				6B23641F2CB7DE720008AA8C /* Kingfisher in Frameworks */,
+				6B23640A2CB7D3E70008AA8C /* Moya in Frameworks */,
+				6B23640F2CB7D3F30008AA8C /* SnapKit in Frameworks */,
+				6B2364142CB7D4080008AA8C /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +147,7 @@
 		53737A492CB510BB00DDB73F = {
 			isa = PBXGroup;
 			children = (
-				46D117762CB7BA34000E3978 /* Secrets.xcconfig */,
+				6B2364152CB7D4A10008AA8C /* Secretes.xcconfig */,
 				53737A692CB510D400DDB73F /* .gitignore */,
 				53737A542CB510BB00DDB73F /* TongueLaw */,
 				53737A532CB510BB00DDB73F /* Products */,
@@ -200,7 +204,7 @@
 				536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */,
 				536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */,
 				53B731F72CB6B19C00D18FAB /* CoreDataManager.swift */,
-				53FAB4982CB7D0A6005C4D34 /* FavoriteDataModel.xcdatamodeld */,
+				6B2364162CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -313,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				6B2363DD2CB76FA10008AA8C /* VC */,
+				6B2364192CB7D5460008AA8C /* VM */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -394,6 +399,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6B2364192CB7D5460008AA8C /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				6B23641B2CB7D5710008AA8C /* HomeViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -412,11 +425,12 @@
 			name = TongueLaw;
 			packageProductDependencies = (
 				53B731F12CB6B0E800D18FAB /* Moya */,
-				6B2363EC2CB78CB40008AA8C /* SnapKit */,
-				53FAB48B2CB7949A005C4D34 /* RxCocoa */,
-				53FAB48D2CB7949A005C4D34 /* RxSwift */,
-				46D1177E2CB7C040000E3978 /* Moya */,
-				46D117802CB7C040000E3978 /* RxMoya */,
+				6B2364092CB7D3E70008AA8C /* Moya */,
+				6B23640B2CB7D3E70008AA8C /* RxMoya */,
+				6B23640E2CB7D3F30008AA8C /* SnapKit */,
+				6B2364112CB7D4080008AA8C /* RxCocoa */,
+				6B2364132CB7D4080008AA8C /* RxSwift */,
+				6B23641E2CB7DE720008AA8C /* Kingfisher */,
 			);
 			productName = TongueLaw;
 			productReference = 53737A522CB510BB00DDB73F /* TongueLaw.app */;
@@ -447,9 +461,10 @@
 			);
 			mainGroup = 53737A492CB510BB00DDB73F;
 			packageReferences = (
-				6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */,
-				53FAB48A2CB7949A005C4D34 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				46D1177D2CB7C03F000E3978 /* XCRemoteSwiftPackageReference "Moya" */,
+				6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */,
+				6B23640D2CB7D3F30008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				6B23641D2CB7DE720008AA8C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 53737A532CB510BB00DDB73F /* Products */;
 			projectDirPath = "";
@@ -482,12 +497,13 @@
 				46D1175A2CB798B7000E3978 /* GenreDTO.swift in Sources */,
 				53B731F62CB6B13A00D18FAB /* FavoriteEntity+CoreDataProperties.swift in Sources */,
 				6B2363F42CB795270008AA8C /* DetailViewController.swift in Sources */,
-				53FAB49A2CB7D0A6005C4D34 /* FavoriteDataModel.xcdatamodeld in Sources */,
+				6B2364182CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld in Sources */,
 				6B2363DC2CB76F450008AA8C /* HomeViewController.swift in Sources */,
 				53FAB4892CB7934D005C4D34 /* FavoriteListViewModel.swift in Sources */,
 				6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */,
 				6B2363CF2CB65A540008AA8C /* ReuseableIdentifierProtocol.swift in Sources */,
 				6B2363C72CB539830008AA8C /* PosterCollectionViewCell.swift in Sources */,
+				6B23641C2CB7D5710008AA8C /* HomeViewModel.swift in Sources */,
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
 				6B2363F02CB78CDD0008AA8C /* UserTabBarController.swift in Sources */,
 				46D117452CB534BE000E3978 /* NetworkManager.swift in Sources */,
@@ -652,6 +668,7 @@
 		};
 		53737A672CB510BD00DDB73F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B2364152CB7D4A10008AA8C /* Secretes.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -728,23 +745,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		46D1177D2CB7C03F000E3978 /* XCRemoteSwiftPackageReference "Moya" */ = {
+		6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya";
+			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.3;
 			};
 		};
-		53FAB48A2CB7949A005C4D34 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.8.0;
-			};
-		};
-		6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		6B23640D2CB7D3F30008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -752,49 +761,70 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+		6B23641D2CB7DE720008AA8C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		46D1177E2CB7C040000E3978 /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 46D1177D2CB7C03F000E3978 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
-		46D117802CB7C040000E3978 /* RxMoya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 46D1177D2CB7C03F000E3978 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = RxMoya;
-		};
 		53B731F12CB6B0E800D18FAB /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Moya;
 		};
-		53FAB48B2CB7949A005C4D34 /* RxCocoa */ = {
+		6B2364092CB7D3E70008AA8C /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 53FAB48A2CB7949A005C4D34 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		6B23640B2CB7D3E70008AA8C /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		6B23640E2CB7D3F30008AA8C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B23640D2CB7D3F30008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		6B2364112CB7D4080008AA8C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		53FAB48D2CB7949A005C4D34 /* RxSwift */ = {
+		6B2364132CB7D4080008AA8C /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 53FAB48A2CB7949A005C4D34 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		6B2363EC2CB78CB40008AA8C /* SnapKit */ = {
+		6B23641E2CB7DE720008AA8C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B2363EB2CB78CB40008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
+			package = 6B23641D2CB7DE720008AA8C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		53FAB4982CB7D0A6005C4D34 /* FavoriteDataModel.xcdatamodeld */ = {
+		6B2364162CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				53FAB4992CB7D0A6005C4D34 /* FavoriteModel.xcdatamodel */,
+				6B2364172CB7D5290008AA8C /* FavoriteModel.xcdatamodel */,
 			);
-			currentVersion = 53FAB4992CB7D0A6005C4D34 /* FavoriteModel.xcdatamodel */;
+			currentVersion = 6B2364172CB7D5290008AA8C /* FavoriteModel.xcdatamodel */;
 			name = FavoriteDataModel.xcdatamodeld;
-			path = /Users/sk/Downloads/FavoriteDataModel.xcdatamodeld;
+			path = /Users/choiseungbeom/Downloads/FavoriteDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

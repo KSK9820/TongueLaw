@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class PosterCollectionViewCell: UICollectionViewCell {
     
@@ -26,8 +27,8 @@ final class PosterCollectionViewCell: UICollectionViewCell {
 //MARK: - PosterCollectionViewCell Method
 extension PosterCollectionViewCell {
     
-    func updateContent(_ image: UIImage) {
-        poster.image = image
+    func updateContent(_ path: String) {
+        poster.kf.setImage(with: TMDBRouter.image(imagePath: path).baseURL)
     }
     
 }

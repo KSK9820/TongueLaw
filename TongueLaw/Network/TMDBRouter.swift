@@ -20,6 +20,7 @@ enum TMDBRouter {
     case similarTV(seriesId: String)
     case creditsMovie(movieId: String)
     case creditsTV(seriesId: String)
+    case image(imagePath: String)
     
     static var apiKey = Bundle.main.infoDictionary?["APIKEY"] as? String ?? "key 없음"
 }
@@ -27,10 +28,21 @@ enum TMDBRouter {
 extension TMDBRouter: TargetType {
     
     var baseURL: URL {
-        guard let url = URL(string: "https://api.themoviedb.org/3/") else {
-            fatalError("잘못된 URL입니다.")
+        
+        switch self {
+        case .image(let path):
+            guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") else {
+                fatalError("잘못된 URL입니다.")
+            }
+            return url
+        
+        default:
+            guard let url = URL(string: "https://api.themoviedb.org/3/") else {
+                fatalError("잘못된 URL입니다.")
+            }
+            return url
+            
         }
-        return url
     }
     
     var path: String {
@@ -55,6 +67,8 @@ extension TMDBRouter: TargetType {
             "movie/\(movieId)/credits"
         case .creditsTV(let seriesId):
             "tv/\(seriesId)/credits"
+        default:
+            ""
         }
     }
     
@@ -82,6 +96,9 @@ extension TMDBRouter: TargetType {
             
         case .similarMovie, .similarTV:
             baseParams["page"] = "1"
+            return .requestParameters(parameters: baseParams, encoding: URLEncoding.default)
+            
+        default:
             return .requestParameters(parameters: baseParams, encoding: URLEncoding.default)
         }
     }
