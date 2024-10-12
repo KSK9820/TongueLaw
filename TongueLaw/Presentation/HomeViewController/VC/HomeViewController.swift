@@ -7,16 +7,41 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class HomeViewController: UIViewController {
     
     private lazy var homeCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: createCollectionViewLayout())
     
+    private let viewModel = HomeViewModel()
+    private var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
+        bind()
+    }
+    
+    private func bind() {
+        let load = BehaviorSubject<Void>(value: ())
+        
+        let input = HomeViewModel.Input(fetchData: load)
+        let output = viewModel.transform(input)
+        
+        output.trendMovies
+            .bind(with: self, onNext: { owner, value in
+                owner.homeCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        output.trendSeries
+            .bind(with: self, onNext: { owner, value in
+                owner.homeCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
 }
@@ -31,11 +56,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch HomeCollectionViewSections(rawValue: section) {
         case .main:
-            1
+            viewModel.randomMovie.count
         case .recommendMovie:
-            10
+            viewModel.movies.count
         case .recommendSeries:
-            10
+            viewModel.tvSeries.count
         default:
             0
         }
@@ -47,7 +72,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainRecommendCollectionViewCell.identifier, for: indexPath) as? MainRecommendCollectionViewCell else {
                 return MainRecommendCollectionViewCell()
             }
-            
+            cell.addFavoriteListButtonTaped.bind(with: self, onNext: { owner, value in
+                owner.viewModel.addFavoriteList(value)
+            })
+            .disposed(by: disposeBag)
+            cell.updateContent(viewModel.randomMovie[indexPath.row])
+          
             return cell
             
         case .recommendMovie:
@@ -55,6 +85,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return PosterCollectionViewCell()
             }
             
+            cell.updateContent(viewModel.movies[indexPath.row].posterPath)
             return cell
             
         case .recommendSeries:
@@ -62,6 +93,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return PosterCollectionViewCell()
             }
             
+            cell.updateContent(viewModel.tvSeries[indexPath.row].posterPath)
             return cell
             
         default:

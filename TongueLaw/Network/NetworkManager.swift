@@ -18,8 +18,7 @@ final class NetworkManager {
     
     private let provider = MoyaProvider<TMDBRouter>()
     
-    func requestTMDB<T: Decodable>(endpoint: TMDBRouter, type: T.Type) -> Single<Result<T, APIError>> {
-        
+    func requestTMDB<T: Decodable>(endpoint: TMDBRouter, type: T.Type, view: UIViewController? = nil ) -> Single<Result<T, APIError>> {
         return Single.create { observer -> Disposable in
             self.provider.rx.request(endpoint)
                 .subscribe { result in
@@ -33,8 +32,8 @@ final class NetworkManager {
                             let apiError = APIError(statusCode: response.statusCode)
                             observer(.success(.failure(apiError)))
                         }
-                    case .failure(let error):
-                        observer(.success(.failure(.other(error))))
+                    case .failure:
+                        observer(.success(.failure(.unknownResponse)))
                     }
                 }
                 .disposed(by: self.disposeBag)
@@ -42,5 +41,5 @@ final class NetworkManager {
             return Disposables.create()
         }
     }
-
+    
 }

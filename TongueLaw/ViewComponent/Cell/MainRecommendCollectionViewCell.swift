@@ -6,14 +6,22 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Kingfisher
 
 final class MainRecommendCollectionViewCell: UICollectionViewCell {
     
+    var playButtonTaped = PublishRelay<Void>()
+    var addFavoriteListButtonTaped = PublishRelay<FavoriteContent>()
+    
+    private var movie: TrendingMovieResponse?
     private let poster = UIImageView()
-    private let genreTextView = UITextView()
+    private let genreLabel = UILabel()
     private let buttonStackView = UIStackView()
     private let playButton = UIButton()
     private let addFavoriteListButton = UIButton()
+    private let disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,9 +38,9 @@ final class MainRecommendCollectionViewCell: UICollectionViewCell {
 //MARK: - MainRecommendCollectionViewCell Method
 extension MainRecommendCollectionViewCell {
     
-    //TODO: - Model 확정시 수정 필요
-    func updateContent(_ image: UIImage) {
-        
+    func updateContent(_ movie: TrendingMovieResponse) {
+        self.movie = movie
+        poster.kf.setImage(with: TMDBRouter.image(imagePath: movie.posterPath).baseURL)
     }
     
 }
@@ -42,7 +50,7 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
     
     func configureHierarchy() {
         contentView.addSubview(poster)
-        contentView.addSubview(genreTextView)
+        contentView.addSubview(genreLabel)
         contentView.addSubview(buttonStackView)
         buttonStackView.addArrangedSubview(playButton)
         buttonStackView.addArrangedSubview(addFavoriteListButton)
@@ -55,7 +63,8 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
         playButton.buttonStyle(type: .play)
         addFavoriteListButton.buttonStyle(type: .favorite)
         
-        genreTextView.text = "애니메이션 가족 코미디 드라마"
+        genreLabel.text = "애니메이션 가족 코미디 드라마"
+        genreLabel.textAlignment = .center
         
         buttonStackView.axis = .horizontal
         buttonStackView.spacing = 8
@@ -73,12 +82,21 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
             make.height.equalTo(36)
         }
         
-        genreTextView.snp.makeConstraints { make in
-            make.bottom.equalTo(buttonStackView.snp.top).offset(16)
+        genreLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(buttonStackView.snp.top)
             make.directionalHorizontalEdges.equalToSuperview().inset(20)
         }
     }
     
+    func configureGestureAndButtonActions() {
+        addFavoriteListButton.rx.tap.bind(with: self) { owner, _ in
+            guard let movie = owner.movie else { return }
+            if let imageData = owner.poster.image?.pngData() {
+                let favoriteContent = FavoriteContent(id: "\(movie.id)", title: movie.title, image: imageData)
+                owner.addFavoriteListButtonTaped.accept(favoriteContent)
+            }
+        }.disposed(by: disposeBag)
+    }
+    
 }
-
 
