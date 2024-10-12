@@ -19,8 +19,6 @@
 		46D117602CB7A215000E3978 /* CreditsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D1175F2CB7A215000E3978 /* CreditsDTO.swift */; };
 		46D117742CB7BA06000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 53B731F12CB6B0E800D18FAB /* Moya */; };
 		46D117752CB7BA06000E3978 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		46D1177F2CB7C040000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D1177E2CB7C040000E3978 /* Moya */; };
-		46D117812CB7C040000E3978 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117802CB7C040000E3978 /* RxMoya */; };
 		46D117842CB7D34B000E3978 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D117832CB7D34B000E3978 /* APIError.swift */; };
 		53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A552CB510BB00DDB73F /* AppDelegate.swift */; };
 		53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A572CB510BB00DDB73F /* SceneDelegate.swift */; };
@@ -34,6 +32,12 @@
 		53B731FB2CB6B1B400D18FAB /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B731FA2CB6B1B400D18FAB /* FavoriteManager.swift */; };
 		53FAB4862CB792DC005C4D34 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		53FAB4892CB7934D005C4D34 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FAB4882CB7934D005C4D34 /* FavoriteListViewModel.swift */; };
+		6B2162E22CBA5AC700C74854 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2162E12CBA5AC700C74854 /* Moya */; };
+		6B2162E42CBA5AC700C74854 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2162E32CBA5AC700C74854 /* RxMoya */; };
+		6B2162E72CBA5AD700C74854 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2162E62CBA5AD700C74854 /* RxCocoa */; };
+		6B2162E92CBA5AD700C74854 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2162E82CBA5AD700C74854 /* RxSwift */; };
+		6B2162EC2CBA5ADD00C74854 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2162EB2CBA5ADD00C74854 /* Kingfisher */; };
+		6B2162EF2CBA5AE400C74854 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2162EE2CBA5AE400C74854 /* SnapKit */; };
 		6B2363AD2CB52ACA0008AA8C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363AC2CB52ACA0008AA8C /* BaseViewProtocol.swift */; };
 		6B2363B62CB531E60008AA8C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B52CB531E60008AA8C /* UIButton+Extension.swift */; };
 		6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363B72CB5321E0008AA8C /* DesignOfButton.swift */; };
@@ -50,14 +54,8 @@
 		6B2363F72CB798060008AA8C /* DetailOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F62CB798060008AA8C /* DetailOverviewCollectionViewCell.swift */; };
 		6B2363F92CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2363F82CB79C2C0008AA8C /* DetailInformationCollectionViewCell.swift */; };
 		6B2364032CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2364022CB7AACE0008AA8C /* DetailCastCollectionViewCell.swift */; };
-		6B23640A2CB7D3E70008AA8C /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364092CB7D3E70008AA8C /* Moya */; };
-		6B23640C2CB7D3E70008AA8C /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6B23640B2CB7D3E70008AA8C /* RxMoya */; };
-		6B23640F2CB7D3F30008AA8C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B23640E2CB7D3F30008AA8C /* SnapKit */; };
-		6B2364122CB7D4080008AA8C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364112CB7D4080008AA8C /* RxCocoa */; };
-		6B2364142CB7D4080008AA8C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6B2364132CB7D4080008AA8C /* RxSwift */; };
 		6B2364182CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B2364162CB7D5290008AA8C /* FavoriteDataModel.xcdatamodeld */; };
 		6B23641C2CB7D5710008AA8C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B23641B2CB7D5710008AA8C /* HomeViewModel.swift */; };
-		6B23641F2CB7DE720008AA8C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B23641E2CB7DE720008AA8C /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +68,6 @@
 		46D1175B2CB798F7000E3978 /* SimilarMovieDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieDTO.swift; sourceTree = "<group>"; };
 		46D1175D2CB79907000E3978 /* SimilarTvDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarTvDTO.swift; sourceTree = "<group>"; };
 		46D1175F2CB7A215000E3978 /* CreditsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsDTO.swift; sourceTree = "<group>"; };
-		46D117762CB7BA34000E3978 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		46D117832CB7D34B000E3978 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -111,14 +108,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B2364122CB7D4080008AA8C /* RxCocoa in Frameworks */,
+				6B2162E92CBA5AD700C74854 /* RxSwift in Frameworks */,
+				6B2162EF2CBA5AE400C74854 /* SnapKit in Frameworks */,
 				46D117752CB7BA06000E3978 /* (null) in Frameworks */,
+				6B2162EC2CBA5ADD00C74854 /* Kingfisher in Frameworks */,
 				46D117742CB7BA06000E3978 /* Moya in Frameworks */,
-				6B23640C2CB7D3E70008AA8C /* RxMoya in Frameworks */,
-				6B23641F2CB7DE720008AA8C /* Kingfisher in Frameworks */,
-				6B23640A2CB7D3E70008AA8C /* Moya in Frameworks */,
-				6B23640F2CB7D3F30008AA8C /* SnapKit in Frameworks */,
-				6B2364142CB7D4080008AA8C /* RxSwift in Frameworks */,
+				6B2162E72CBA5AD700C74854 /* RxCocoa in Frameworks */,
+				6B2162E42CBA5AC700C74854 /* RxMoya in Frameworks */,
+				6B2162E22CBA5AC700C74854 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,12 +436,12 @@
 			name = TongueLaw;
 			packageProductDependencies = (
 				53B731F12CB6B0E800D18FAB /* Moya */,
-				6B2364092CB7D3E70008AA8C /* Moya */,
-				6B23640B2CB7D3E70008AA8C /* RxMoya */,
-				6B23640E2CB7D3F30008AA8C /* SnapKit */,
-				6B2364112CB7D4080008AA8C /* RxCocoa */,
-				6B2364132CB7D4080008AA8C /* RxSwift */,
-				6B23641E2CB7DE720008AA8C /* Kingfisher */,
+				6B2162E12CBA5AC700C74854 /* Moya */,
+				6B2162E32CBA5AC700C74854 /* RxMoya */,
+				6B2162E62CBA5AD700C74854 /* RxCocoa */,
+				6B2162E82CBA5AD700C74854 /* RxSwift */,
+				6B2162EB2CBA5ADD00C74854 /* Kingfisher */,
+				6B2162EE2CBA5AE400C74854 /* SnapKit */,
 			);
 			productName = TongueLaw;
 			productReference = 53737A522CB510BB00DDB73F /* TongueLaw.app */;
@@ -475,10 +472,10 @@
 			);
 			mainGroup = 53737A492CB510BB00DDB73F;
 			packageReferences = (
-				6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */,
-				6B23640D2CB7D3F30008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */,
-				6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */,
-				6B23641D2CB7DE720008AA8C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6B2162E02CBA5AC700C74854 /* XCRemoteSwiftPackageReference "Moya" */,
+				6B2162E52CBA5AD700C74854 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				6B2162EA2CBA5ADD00C74854 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6B2162ED2CBA5AE400C74854 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 53737A532CB510BB00DDB73F /* Products */;
 			projectDirPath = "";
@@ -760,7 +757,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */ = {
+		6B2162E02CBA5AC700C74854 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -768,15 +765,7 @@
 				minimumVersion = 15.0.3;
 			};
 		};
-		6B23640D2CB7D3F30008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
-			};
-		};
-		6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		6B2162E52CBA5AD700C74854 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -784,12 +773,20 @@
 				minimumVersion = 6.8.0;
 			};
 		};
-		6B23641D2CB7DE720008AA8C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		6B2162EA2CBA5ADD00C74854 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 8.0.3;
+			};
+		};
+		6B2162ED2CBA5AE400C74854 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -799,35 +796,35 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Moya;
 		};
-		6B2364092CB7D3E70008AA8C /* Moya */ = {
+		6B2162E12CBA5AC700C74854 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 6B2162E02CBA5AC700C74854 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		6B23640B2CB7D3E70008AA8C /* RxMoya */ = {
+		6B2162E32CBA5AC700C74854 /* RxMoya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B2364082CB7D3E70008AA8C /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 6B2162E02CBA5AC700C74854 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
 		};
-		6B23640E2CB7D3F30008AA8C /* SnapKit */ = {
+		6B2162E62CBA5AD700C74854 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B23640D2CB7D3F30008AA8C /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		6B2364112CB7D4080008AA8C /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 6B2162E52CBA5AD700C74854 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		6B2364132CB7D4080008AA8C /* RxSwift */ = {
+		6B2162E82CBA5AD700C74854 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B2364102CB7D4080008AA8C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 6B2162E52CBA5AD700C74854 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		6B23641E2CB7DE720008AA8C /* Kingfisher */ = {
+		6B2162EB2CBA5ADD00C74854 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B23641D2CB7DE720008AA8C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 6B2162EA2CBA5ADD00C74854 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		6B2162EE2CBA5AE400C74854 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B2162ED2CBA5AE400C74854 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
