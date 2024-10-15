@@ -63,7 +63,7 @@ enum DesignOfButton {
     var backGroundColor: UIColor {
         switch self {
         case .play:
-            .white
+            .systemGray6
         case .favorite:
              #colorLiteral(red: 0.1907704771, green: 0.20546031, blue: 0.2267445326, alpha: 1)
         case .save:

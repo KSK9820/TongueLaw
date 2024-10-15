@@ -41,8 +41,10 @@ extension PosterCollectionViewCell: BaseViewProtocol {
     }
     
     func configureUI() {
+        contentView.layer.cornerRadius = 12
+        contentView.clipsToBounds = true
+        
         poster.backgroundColor = .gray
-        poster.layer.cornerRadius = 8
     }
     
     func configureLayout() {

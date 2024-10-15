@@ -15,6 +15,7 @@ final class HomeViewController: UIViewController {
     private lazy var homeCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: createCollectionViewLayout())
     
+    private let refreshControl = UIRefreshControl()
     private let viewModel = HomeViewModel()
     private var disposeBag = DisposeBag()
     
@@ -28,18 +29,13 @@ final class HomeViewController: UIViewController {
     private func bind() {
         let load = BehaviorSubject<Void>(value: ())
         
-        let input = HomeViewModel.Input(fetchData: load)
+        let input = HomeViewModel.Input(fetchData: load, refresh: refreshControl.rx.controlEvent(.valueChanged))
         let output = viewModel.transform(input)
         
-        output.trendMovies
+        output.signal
             .bind(with: self, onNext: { owner, value in
                 owner.homeCollectionView.reloadData()
-            })
-            .disposed(by: disposeBag)
-        
-        output.trendSeries
-            .bind(with: self, onNext: { owner, value in
-                owner.homeCollectionView.reloadData()
+                owner.refreshControl.endRefreshing()
             })
             .disposed(by: disposeBag)
     }
@@ -143,7 +139,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension HomeViewController: BaseViewProtocol {
     
     func configureNavigationBar() {
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: DesignOfButton.search.imageName),
+                                           style: .plain,
+                                           target: self,
+                                           action: nil)
+        searchButton.tintColor = .black
         
+        searchButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                if let tabBarController = self?.tabBarController {
+                    tabBarController.selectedIndex = 1
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem = searchButton
     }
     
     func configureHierarchy() {
@@ -155,6 +165,7 @@ extension HomeViewController: BaseViewProtocol {
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         homeCollectionView.showsVerticalScrollIndicator = false
+        homeCollectionView.refreshControl = refreshControl
         
         homeCollectionView.register(MainRecommendCollectionViewCell.self, forCellWithReuseIdentifier: MainRecommendCollectionViewCell.identifier)
         homeCollectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
