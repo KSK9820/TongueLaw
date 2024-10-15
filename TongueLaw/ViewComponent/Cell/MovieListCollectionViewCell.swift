@@ -67,6 +67,7 @@ extension MovieListCollectionViewCell: BaseViewProtocol {
     func configureUI() {
         poster.backgroundColor = .gray
         poster.layer.cornerRadius = 8
+        poster.clipsToBounds = true
         titleView.textAlignment = .left
         playIconImageView.image = UIImage(systemName: "play.circle")
         playIconImageView.tintColor = .black
