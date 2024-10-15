@@ -85,4 +85,4 @@
     
 
 ## 트러블 슈팅
-[🚀MVVM으로 변경](https://github.com/KSK9820/TongueLaw.wiki.git)
+[🚀MVVM으로 변경](https://github.com/KSK9820/TongueLaw/wiki/%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85-%E2%80%90-View%EC%97%90-%ED%91%9C%EC%8B%9C%ED%95%A0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-View%EA%B0%80-%EA%B0%80%EC%A7%80%EA%B3%A0-%EC%9E%88%EB%8A%94-%EA%B2%83%EC%9D%B4-%EB%A7%9E%EC%9D%84%EA%B9%8C%3F)
