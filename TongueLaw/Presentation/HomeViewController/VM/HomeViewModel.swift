@@ -22,67 +22,72 @@ final class HomeViewModel {
     
     struct Input {
         let fetchData: BehaviorSubject<Void>
+        let refresh: ControlEvent<Void>
     }
     
     struct Output {
-        let trendMovies: BehaviorSubject<[TrendingMovieResponse]>
-        let trendSeries: BehaviorSubject<[TrendingTvResponse]>
+        let signal: PublishSubject<Void>
         let error: PublishSubject<APIError>
     }
     
     init() {}
     
     func transform(_ input: Input) -> Output {
-        let trendMovies = BehaviorSubject<[TrendingMovieResponse]>(value: [])
-        let trendSeries = BehaviorSubject<[TrendingTvResponse]>(value: [])
+        let completionSignal = PublishSubject<Void>()
         let error = PublishSubject<APIError>()
         
-        input.fetchData
+        input.refresh
+            .subscribe(onNext: {
+                input.fetchData.onNext(())
+            })
+            .disposed(by: disposeBag)
+        
+        let fetchMovies = input.fetchData
             .flatMapLatest { [weak self] _ -> Single<Result<TrendingMovieDTO, APIError>> in
                 guard let self = self else {
                     return .just(.failure(APIError.unknownResponse))
                 }
                 return self.networkManager.requestTMDB(endpoint: .trendingMovie, type: TrendingMovieDTO.self)
             }
-            .subscribe(onNext: { [weak self] result in
+            .asObservable()
+            .do(onNext: { [weak self] result in
                 switch result {
                 case .success(let trendingMovies):
                     self?.movies = trendingMovies.trendingResponse
-                    
                     if let randomMovie = trendingMovies.trendingResponse.randomElement() {
                         self?.randomMovie = [randomMovie]
                     }
-                    
-                    trendMovies.onNext(trendingMovies.trendingResponse)
-                    
                 case .failure(let apiError):
-                    print(apiError)
                     error.onNext(apiError)
                 }
             })
-            .disposed(by: disposeBag)
+            .map { _ in () }
         
-        input.fetchData
+        let fetchSeries = input.fetchData
             .flatMapLatest { [weak self] _ -> Single<Result<TrendingTvDTO, APIError>> in
                 guard let self = self else {
                     return .just(.failure(APIError.unknownResponse))
                 }
                 return self.networkManager.requestTMDB(endpoint: .trendingTV, type: TrendingTvDTO.self)
             }
-            .subscribe(onNext: { [weak self] result in
+            .asObservable()
+            .do(onNext: { [weak self] result in
                 switch result {
                 case .success(let trendingSeries):
                     self?.tvSeries = trendingSeries.trendingTvResponse
-                    trendSeries.onNext(trendingSeries.trendingTvResponse)
-                    
                 case .failure(let apiError):
                     error.onNext(apiError)
                 }
             })
+            .map { _ in () }
+        
+        Observable.zip(fetchMovies, fetchSeries)
+            .subscribe(onNext: { _ in
+                completionSignal.onNext(())
+            })
             .disposed(by: disposeBag)
         
-        
-        return Output(trendMovies: trendMovies, trendSeries: trendSeries, error: error)
+        return Output(signal: completionSignal, error: error)
     }
     
     func addFavoriteList(_ value: FavoriteContent) {
