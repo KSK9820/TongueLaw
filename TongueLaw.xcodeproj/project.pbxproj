@@ -19,6 +19,13 @@
 		46D117602CB7A215000E3978 /* CreditsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D1175F2CB7A215000E3978 /* CreditsDTO.swift */; };
 		46D117752CB7BA06000E3978 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		46D117842CB7D34B000E3978 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D117832CB7D34B000E3978 /* APIError.swift */; };
+		46D117C62CBDF6BC000E3978 /* FavoriteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46D117C42CBDF6BC000E3978 /* FavoriteDataModel.xcdatamodeld */; };
+		46D117C92CBE4572000E3978 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117C82CBE4572000E3978 /* RxCocoa */; };
+		46D117CB2CBE4572000E3978 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117CA2CBE4572000E3978 /* RxSwift */; };
+		46D117CE2CBE4583000E3978 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117CD2CBE4583000E3978 /* SnapKit */; };
+		46D117D12CBE459A000E3978 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117D02CBE459A000E3978 /* Moya */; };
+		46D117D32CBE459A000E3978 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117D22CBE459A000E3978 /* RxMoya */; };
+		46D117D62CBE45B8000E3978 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 46D117D52CBE45B8000E3978 /* Kingfisher */; };
 		53737A562CB510BB00DDB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A552CB510BB00DDB73F /* AppDelegate.swift */; };
 		53737A582CB510BB00DDB73F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53737A572CB510BB00DDB73F /* SceneDelegate.swift */; };
 		53737A5F2CB510BD00DDB73F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53737A5E2CB510BD00DDB73F /* Assets.xcassets */; };
@@ -69,6 +76,7 @@
 		46D1175D2CB79907000E3978 /* SimilarTvDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarTvDTO.swift; sourceTree = "<group>"; };
 		46D1175F2CB7A215000E3978 /* CreditsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsDTO.swift; sourceTree = "<group>"; };
 		46D117832CB7D34B000E3978 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		46D117C52CBDF6BC000E3978 /* FavoriteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteModel.xcdatamodel; sourceTree = "<group>"; };
 		536843802CB6AEE000FD33C8 /* FavoriteEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		536843812CB6AEE000FD33C8 /* FavoriteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		53737A522CB510BB00DDB73F /* TongueLaw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TongueLaw.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -525,6 +533,7 @@
 				6B2363B82CB5321E0008AA8C /* DesignOfButton.swift in Sources */,
 				46D117842CB7D34B000E3978 /* APIError.swift in Sources */,
 				6B2363F02CB78CDD0008AA8C /* UserTabBarController.swift in Sources */,
+				46D117C62CBDF6BC000E3978 /* FavoriteDataModel.xcdatamodeld in Sources */,
 				46D117452CB534BE000E3978 /* NetworkManager.swift in Sources */,
 				53FAB4862CB792DC005C4D34 /* (null) in Sources */,
 				5373FFB22CB6AD70006E54A8 /* FavoriteContent.swift in Sources */,
@@ -830,6 +839,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6B1A21462CBE4AFD003CBB66 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		53B731F12CB6B0E800D18FAB /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 

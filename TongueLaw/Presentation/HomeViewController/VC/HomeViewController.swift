@@ -111,7 +111,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        let detailVC = DetailViewController()
+        
+        switch HomeCollectionViewSections(rawValue: indexPath.section) {
+        case .main:
+            let selectedMovie = viewModel.randomMovie[indexPath.row]
+            detailVC.resultMovieData = selectedMovie
+            
+        case .recommendMovie:
+            let selectedMovie = viewModel.movies[indexPath.row]
+            detailVC.resultMovieData = selectedMovie
+            
+        case .recommendSeries:
+            let selectedSeries = viewModel.tvSeries[indexPath.row]
+            detailVC.resultTvData = selectedSeries
+            
+        default:
+            return
+        }
+        
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }
