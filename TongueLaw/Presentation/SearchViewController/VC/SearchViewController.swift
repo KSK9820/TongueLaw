@@ -7,27 +7,58 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class SearchViewController: UIViewController {
+    
+    private let viewModel = SearchViewModel()
     
     private let searchBar = UISearchBar()
     private lazy var searchCollectionView = UICollectionView(frame: .zero,
                                                              collectionViewLayout: createCollectionViewLayout())
+    private var prefetchAction = PublishSubject<Void>()
     
-    var searchText: String = "" {
-        didSet {
-            searchCollectionView.reloadData()
-        }
-    }
-    
-    var collectionViewSection: SearchCollectionViewSections {
-        searchText.isEmpty ? .emptyValue : .mola
-    }
+    private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
+        bind()
+    }
+    
+    private func bind() {
+        let searchKeyword = searchBar.rx.text
+            .orEmpty
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+        let prefetchAction = ControlEvent<Void>(events: prefetchAction)
+        let mergedSearchKeyword = Observable.merge(searchKeyword, prefetchAction.withLatestFrom(searchKeyword))
+        let noResult = PublishSubject<Void>()
+            
+        let input = SearchViewModel.Input(searchText: mergedSearchKeyword, emptySearchResult: noResult)
+        let output = viewModel.transform(input)
+        
+        output.search
+            .drive(with: self) { owner, value in
+                if owner.viewModel.searchResult.count > 0 && owner.viewModel.searchResult[0].totalResults > 0 {
+                    owner.searchCollectionView.reloadData()
+                    if owner.viewModel.searchResult[0].page == 1 {
+                        owner.searchCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                    }
+                } else {
+                    noResult.onNext(())
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.trending
+            .drive(with: self) { owner, value in
+                owner.searchCollectionView.reloadData()
+                owner.searchCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            }
+            .disposed(by: disposeBag)
     }
     
 }
@@ -37,31 +68,46 @@ final class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        if viewModel.searchResult.count > 0 && viewModel.searchResult[0].searchResponse.count > 0 {
+            return viewModel.searchResult[0].searchResponse.count
+        } else if viewModel.trendingResult.count > 0 && viewModel.trendingResult[0].trendingResponse.count > 0 {
+            return viewModel.trendingResult[0].trendingResponse.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if searchText.isEmpty {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.identifier, for: indexPath) as? MovieListCollectionViewCell else {
-                return MovieListCollectionViewCell()
-            }
-            
-            return cell
-        } else {
+        if viewModel.searchResult.count > 0 && viewModel.searchResult[0].searchResponse.count > 0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell else {
                 return PosterCollectionViewCell()
             }
             
+            cell.updateContent(viewModel.searchResult[0].searchResponse[indexPath.row].posterPath)
+            
+            return cell
+        } else if viewModel.trendingResult.count > 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.identifier, for: indexPath) as? MovieListCollectionViewCell else {
+                return MovieListCollectionViewCell()
+            }
+            
+            cell.setTrendingContent(viewModel.trendingResult[0].trendingResponse[indexPath.row])
+            
             return cell
         }
+        
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleCollectionViewHeader.identifier, for: indexPath) as? TitleCollectionViewHeader else {
             return TitleCollectionViewHeader()
         }
-        
-        header.updateContent(title: collectionViewSection.title)
+        if viewModel.searchResult.count > 0 && viewModel.searchResult[0].totalResults > 0 {
+            header.updateContent(title: SearchCollectionViewSections.searchValue.title)
+        } else {
+            header.updateContent(title: SearchCollectionViewSections.trendValue.title)
+        }
         
         return header
     }
@@ -76,18 +122,16 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        
-    }
-    
-}
-
-//MARK: - UISearchBarDelegate
-extension SearchViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
-        
-        searchText = text
+        for item in indexPaths {
+            if viewModel.searchResult.count > 0 {
+                let search = viewModel.searchResult[0]
+                if search.searchResponse.count > 0 && search.page < search.totalPages {
+                    if item.row == search.searchResponse.count - 3 {
+                        self.prefetchAction.onNext(())
+                    }
+                }
+            }
+        }
     }
     
 }
@@ -127,20 +171,18 @@ extension SearchViewController: BaseViewProtocol {
     
     private func configureSearchBar() {
         searchBar.placeholder = "영화, 시리즈를 검색하세요"
-        searchBar.delegate = self
         searchBar.autocorrectionType = .no
         searchBar.spellCheckingType = .no
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            
             guard let self = self else { return nil }
             
-            if self.searchText.isEmpty {
-                return SearchCollectionViewSections.emptyValue.layoutSection
+            if viewModel.searchResult.count > 0 && viewModel.searchResult[0].totalResults > 0 {
+                return SearchCollectionViewSections.searchValue.layoutSection
             } else {
-                return SearchCollectionViewSections.mola.layoutSection
+                return SearchCollectionViewSections.trendValue.layoutSection
             }
         }
     }
@@ -150,21 +192,21 @@ extension SearchViewController: BaseViewProtocol {
 //MARK: - SearchCollectionViewSections
 enum SearchCollectionViewSections: Int, CaseIterable {
     
-    case emptyValue
-    case mola
+    case trendValue
+    case searchValue
     
     var title: String {
         switch self {
-        case .emptyValue:
+        case .trendValue:
             "추천 시리즈 & 영화"
-        case .mola:
+        case .searchValue:
             "영화 & 시리즈"
         }
     }
     
     var layoutSection: NSCollectionLayoutSection {
         switch self {
-        case .emptyValue:
+        case .trendValue:
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                   heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -188,7 +230,7 @@ enum SearchCollectionViewSections: Int, CaseIterable {
             
             return section
             
-        case .mola:
+        case .searchValue:
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33),
                                                   heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -220,5 +262,4 @@ enum SearchCollectionViewSections: Int, CaseIterable {
             return section
         }
     }
-    
 }
