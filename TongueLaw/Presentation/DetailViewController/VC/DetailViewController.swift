@@ -348,7 +348,7 @@ fileprivate enum DetailCollectionViewSections: Int, CaseIterable {
             
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .estimated(152))
+                                                   heightDimension: .estimated(160))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitems: [item])
             

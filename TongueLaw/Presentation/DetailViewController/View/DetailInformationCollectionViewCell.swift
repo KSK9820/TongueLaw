@@ -90,8 +90,9 @@ extension DetailInformationCollectionViewCell: BaseViewProtocol {
         }
         
         playButton.snp.makeConstraints { make in
-            make.bottom.equalTo(saveButton.snp.top).inset(8)
+            make.bottom.equalTo(saveButton.snp.top).offset(-8)
             make.directionalHorizontalEdges.equalTo(contentView.snp.directionalHorizontalEdges)
+            make.height.equalTo(44)
         }
     
         titleLabel.snp.makeConstraints { make in
