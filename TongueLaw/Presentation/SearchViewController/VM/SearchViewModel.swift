@@ -27,7 +27,7 @@ final class SearchViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        var searchResult = input.searchText
+        let searchResult = input.searchText
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .filter { !$0.isEmpty }
             .flatMapLatest { [weak self] query -> Single<Result<SearchDTO, APIError>> in
@@ -36,7 +36,7 @@ final class SearchViewModel {
                 if self.searchKeyword != query {
                     self.searchKeyword = query
                     return NetworkManager.shared.requestTMDB(endpoint: .searchMovie(searchQuery: query), type: SearchDTO.self)
-                } else if  self.searchResult.count > 0 && self.searchResult[0].page < self.searchResult[0].totalPages {
+                } else if self.searchResult.count > 0 && self.searchResult[0].page < self.searchResult[0].totalPages {
                     return NetworkManager.shared.requestTMDB(endpoint: .searchMovie(searchQuery: query, page: self.searchResult[0].page + 1), type: SearchDTO.self)
                 }
                     
@@ -53,13 +53,13 @@ final class SearchViewModel {
                     }
                     return ()
                 case .failure(let error):
-                    print(error)
+                    print("***", error)
                 }
             }
             .asDriver(onErrorJustReturn: ())
             
         
-        var trendingResult = input.emptySearchResult
+        let trendingResult = input.emptySearchResult
             .flatMapLatest { _ -> Single<Result<TrendingMovieDTO, APIError>> in
                 return NetworkManager.shared.requestTMDB(endpoint: .trendingMovie, type: TrendingMovieDTO.self)
             }
