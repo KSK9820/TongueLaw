@@ -124,7 +124,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension HomeViewController: BaseViewProtocol {
     
     func configureNavigationBar() {
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: DesignOfButton.search.imageName),
+                                           style: .plain,
+                                           target: self,
+                                           action: nil)
+        searchButton.tintColor = .black
+
+        searchButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                if let tabBarController = self?.tabBarController {
+                    tabBarController.selectedIndex = 1
+                }
+            })
+            .disposed(by: disposeBag)
         
+        navigationItem.rightBarButtonItem = searchButton
     }
     
     func configureHierarchy() {

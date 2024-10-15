@@ -17,7 +17,6 @@ final class MainRecommendCollectionViewCell: UICollectionViewCell {
     
     private var movie: TrendingMovieResponse?
     private let poster = UIImageView()
-    private let genreLabel = UILabel()
     private let buttonStackView = UIStackView()
     private let playButton = UIButton()
     private let addFavoriteListButton = UIButton()
@@ -50,22 +49,20 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
     
     func configureHierarchy() {
         contentView.addSubview(poster)
-        contentView.addSubview(genreLabel)
         contentView.addSubview(buttonStackView)
         buttonStackView.addArrangedSubview(playButton)
         buttonStackView.addArrangedSubview(addFavoriteListButton)
     }
     
     func configureUI() {
+        contentView.layer.cornerRadius = 12
+        contentView.clipsToBounds = true
+        
         poster.backgroundColor = .gray
-        poster.layer.cornerRadius = 12
         
         playButton.buttonStyle(type: .play)
         addFavoriteListButton.buttonStyle(type: .favorite)
-        
-        genreLabel.text = "애니메이션 가족 코미디 드라마"
-        genreLabel.textAlignment = .center
-        
+
         buttonStackView.axis = .horizontal
         buttonStackView.spacing = 8
     }
@@ -80,11 +77,6 @@ extension MainRecommendCollectionViewCell: BaseViewProtocol {
             make.centerX.equalTo(contentView.snp.centerX)
             make.width.equalTo(contentView.snp.width).inset(8)
             make.height.equalTo(36)
-        }
-        
-        genreLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(buttonStackView.snp.top)
-            make.directionalHorizontalEdges.equalToSuperview().inset(20)
         }
     }
     
