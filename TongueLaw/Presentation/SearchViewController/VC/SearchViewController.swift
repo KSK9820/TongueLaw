@@ -13,14 +13,12 @@ final class SearchViewController: UIViewController {
     
     private let viewModel = SearchViewModel()
     
-    private var searchResult = [SearchResponse]()
-    private var trendResult  = [TrendingMovieResponse]()
     private var searchTextKeyword = PublishSubject<String>()
-    private var disposeBag = DisposeBag()
     
     private let searchBar = UISearchBar()
     private lazy var searchCollectionView = UICollectionView(frame: .zero,
                                                              collectionViewLayout: createCollectionViewLayout())
+    private var disposeBag = DisposeBag()
     
     var searchText: String = "" {
         didSet {
@@ -45,41 +43,32 @@ final class SearchViewController: UIViewController {
             .orEmpty
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] query in
-                self?.searchTextKeyword.onNext(query)
-            })
+            .bind(to: searchTextKeyword)
             .disposed(by: disposeBag)
+            
             
         let noResult = PublishSubject<Void>()
             
-        let input = SearchViewModel.Input(searchText: searchTextKeyword, emptySearchResult: noResult)
+        let input = SearchViewModel.Input(searchText: searchTextKeyword.asObservable(), emptySearchResult: noResult)
         let output = viewModel.transform(input)
         
         output.search
             .drive(with: self) { owner, value in
-                if value.0.count > 0 {
-                    if value.1 == true {
-                        owner.searchResult = value.0
-                        owner.searchCollectionView.reloadData()
-                        owner.trendResult = []
-                    } else {
-                        owner.searchResult += value.0
-                        owner.searchCollectionView.reloadData()
-                        owner.trendResult = []
+                if owner.viewModel.searchResult.count > 0 && owner.viewModel.searchResult[0].totalResults > 0 {
+                    owner.searchCollectionView.reloadData()
+                    if owner.viewModel.searchResult[0].page == 1{
+                        owner.searchCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                     }
                 } else {
                     noResult.onNext(())
-                    owner.searchResult = []
                 }
             }
             .disposed(by: disposeBag)
         
         output.trending
             .drive(with: self) { owner, value in
-                if value.count > 0 {
-                    owner.trendResult = value
-                    owner.searchCollectionView.reloadData()
-                }
+                owner.searchCollectionView.reloadData()
+                owner.searchCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             }
             .disposed(by: disposeBag)
     }
@@ -91,10 +80,10 @@ final class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if searchResult.count > 0 {
-            return searchResult.count
-        } else if trendResult.count > 0 {
-            return trendResult.count
+        if viewModel.searchResult.count > 0 && viewModel.searchResult[0].searchResponse.count > 0 {
+            return viewModel.searchResult[0].searchResponse.count
+        } else if viewModel.trendingResult.count > 0 && viewModel.trendingResult[0].trendingResponse.count > 0 {
+            return viewModel.trendingResult[0].trendingResponse.count
         }
         
         return 0
@@ -105,10 +94,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return MovieListCollectionViewCell()
         }
         
-        if searchResult.count > 0 {
-            cell.setSearchContent(searchResult[indexPath.row])
-        } else {
-            cell.setTrendingContent(trendResult[indexPath.row])
+        if viewModel.searchResult.count > 0 && viewModel.searchResult[0].searchResponse.count > 0 {
+            cell.setSearchContent(viewModel.searchResult[0].searchResponse[indexPath.row])
+        } else if viewModel.trendingResult.count > 0 {
+            cell.setTrendingContent(viewModel.trendingResult[0].trendingResponse[indexPath.row])
         }
         
         return cell
@@ -135,16 +124,19 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for item in indexPaths {
-            if searchResult.count > 0 {
-                if item.row == searchResult.count - 10 {
-                    searchBar.rx.text
-                        .orEmpty
-                        .debounce(.seconds(1), scheduler: MainScheduler.instance)
-                        .distinctUntilChanged()
-                        .subscribe(onNext: { [weak self] query in
-                            self?.searchTextKeyword.onNext(query)
-                        })
-                        .disposed(by: disposeBag)
+            if viewModel.searchResult.count > 0 {
+                let search = viewModel.searchResult[0]
+                if search.searchResponse.count > 0 && search.page < search.totalPages {
+                    if item.row == search.searchResponse.count - 10 {
+                        searchBar.rx.text
+                            .orEmpty
+                            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+                            .distinctUntilChanged()
+                            .subscribe(onNext: { [weak self] query in
+                                self?.searchTextKeyword.onNext(query)
+                            })
+                            .disposed(by: disposeBag)
+                    }
                 }
             }
         }

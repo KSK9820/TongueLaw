@@ -12,9 +12,9 @@ import RxCocoa
 final class SearchViewModel {
     
     private let disposeBag = DisposeBag()
-    private var searchResult = [SearchDTO]()
+    private(set) var searchResult = [SearchDTO]()
     private(set) var trendingResult = [TrendingMovieDTO]()
-    
+    private var searchKeyword = ""
     
     struct Input {
         let searchText: Observable<String>
@@ -22,49 +22,58 @@ final class SearchViewModel {
     }
     
     struct Output {
-        let search: Driver<([SearchResponse], Bool)>
-        let trending: Driver<[TrendingMovieResponse]>
+        let search: Driver<Void>
+        let trending: Driver<Void>
     }
     
     func transform(_ input: Input) -> Output {
         var searchResult = input.searchText
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .filter { !$0.isEmpty }
-            .flatMapLatest { query -> Single<Result<SearchDTO, APIError>> in
-                if self.searchResult.count > 0 && self.searchResult[0].page < self.searchResult[0].totalPages {
+            .flatMapLatest { [weak self] query -> Single<Result<SearchDTO, APIError>> in
+                guard let self else { return Single.error(APIError.unknownResponse) }
+                
+                if self.searchKeyword != query {
+                    self.searchKeyword = query
+                    return NetworkManager.shared.requestTMDB(endpoint: .searchMovie(searchQuery: query), type: SearchDTO.self)
+                } else if  self.searchResult.count > 0 && self.searchResult[0].page < self.searchResult[0].totalPages {
                     return NetworkManager.shared.requestTMDB(endpoint: .searchMovie(searchQuery: query, page: self.searchResult[0].page + 1), type: SearchDTO.self)
                 }
-                return NetworkManager.shared.requestTMDB(endpoint: .searchMovie(searchQuery: query), type: SearchDTO.self)
+                    
+                return Single.error(APIError.unknownResponse)
             }
-            .map { [weak self] result -> ([SearchResponse], Bool) in
+            .map { [weak self] result in
                 switch result {
                 case .success(let value):
-                    self?.searchResult = [value]
-                    self?.trendingResult = []
-                    
-                    return (value.searchResponse, value.page == 1 ? true : false)
-                case .failure:
-                    return ([], true)
+                    if value.page == 1 {
+                        self?.searchResult = [value]
+                    } else {
+                        self?.searchResult[0].page = value.page
+                        self?.searchResult[0].searchResponse += value.searchResponse
+                    }
+                    return ()
+                case .failure(let error):
+                    print(error)
                 }
             }
-            .asDriver(onErrorJustReturn: ([], true))
+            .asDriver(onErrorJustReturn: ())
             
         
         var trendingResult = input.emptySearchResult
             .flatMapLatest { _ -> Single<Result<TrendingMovieDTO, APIError>> in
                 return NetworkManager.shared.requestTMDB(endpoint: .trendingMovie, type: TrendingMovieDTO.self)
             }
-            .map { [weak self] result -> [TrendingMovieResponse] in
+            .map { [weak self] result in
                 switch result {
                 case .success(let value):
                     self?.trendingResult = [value]
                     self?.searchResult = []
-                    return value.trendingResponse
-                case .failure:
-                    return []
+                    return ()
+                case .failure(let error):
+                    print(error)
                 }
             }
-            .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: ())
         
      
         
