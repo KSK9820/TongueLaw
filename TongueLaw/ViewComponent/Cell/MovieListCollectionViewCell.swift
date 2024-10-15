@@ -42,6 +42,17 @@ extension MovieListCollectionViewCell {
             titleView.text = title
         }
     }
+    
+    func setSearchContent(_ content: SearchResponse) {
+        poster.kf.setImage(with: TMDBRouter.image(imagePath: content.posterPath).baseURL)
+        titleView.text = content.title
+    }
+    
+    func setTrendingContent(_ content: TrendingMovieResponse) {
+        poster.kf.setImage(with: TMDBRouter.image(imagePath: content.posterPath).baseURL)
+        titleView.text = content.title
+    }
+    
 }
 
 //MARK: - MovieListCollectionViewCell Configuration

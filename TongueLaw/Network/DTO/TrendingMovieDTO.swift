@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - TrendingMovieDTO
 struct TrendingMovieDTO: Decodable {
-    let page: Int
-    let trendingResponse: [TrendingMovieResponse]
+    var page: Int
+    var trendingResponse: [TrendingMovieResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {

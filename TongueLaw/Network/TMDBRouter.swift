@@ -10,8 +10,8 @@ import Moya
 
 enum TMDBRouter {
     
-    case searchMovie(searchQuery: String)
-    case searchTV(searchQuery: String)
+    case searchMovie(searchQuery: String, page: Int = 1)
+    case searchTV(searchQuery: String, page: Int = 1)
     case trendingMovie
     case trendingTV
     case genreMovie
@@ -87,8 +87,9 @@ extension TMDBRouter: TargetType {
         ]
         
         switch self {
-        case .searchMovie(let searchQuery), .searchTV(let searchQuery):
+        case .searchMovie(let searchQuery, let page), .searchTV(let searchQuery, let page):
             baseParams["query"] = searchQuery
+            baseParams["page"] = "\(page)"
             return .requestParameters(parameters: baseParams, encoding: URLEncoding.default)
             
         case .trendingMovie, .trendingTV, .genreMovie, .genreTV, .creditsMovie, .creditsTV:
