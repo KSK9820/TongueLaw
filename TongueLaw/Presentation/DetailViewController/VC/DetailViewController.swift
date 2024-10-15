@@ -7,26 +7,144 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+import Moya
 
 final class DetailViewController: UIViewController {
     
     private let poster = UIImageView()
     private lazy var similarCollectionView = UICollectionView(frame: .zero,
                                                               collectionViewLayout: createCollectionViewLayout())
+    var resultMovieData: TrendingMovieResponse?
+    var resultTvData: TrendingTvResponse?
+    
+    private var castData: [Cast] = []
+    private var similarMovies: [SimilarMovieResponse] = []
+    private var similarTVShows: [SimilarTvResponse] = []
+    private var genreList: [Int: String] = [:]
+    private let provider = MoyaProvider<TMDBRouter>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
+        similarCollectionView.reloadData()
+        fetchMovieCredits()
+        fetchSimilarMovie()
+        fetchSimilarTv()
+        fetchGenres()
+    }
+    private func fetchMovieCredits() {
+        guard let movieId = resultMovieData?.id else { return }
+
+        provider.request(.creditsMovie(movieId: String(movieId))) { [weak self] result in
+            switch result {
+            case .success(let response):
+                do {
+                    let creditsResponse = try JSONDecoder().decode(CreditsDTO.self, from: response.data)
+                    self?.castData = creditsResponse.cast
+                    DispatchQueue.main.async {
+                        guard let self = self else { return }
+                        if !self.castData.isEmpty {
+                            self.similarCollectionView.reloadData()
+                        }
+                    }
+                } catch {
+                    print("Failed to decode: \(error.localizedDescription)")
+                }
+            case .failure(let error):
+                print("Network request failed: \(error.localizedDescription)")
+            }
+        }
     }
     
+    private func fetchSimilarMovie() {
+            if let movieId = resultMovieData?.id {
+                provider.request(.similarMovie(movieId: String(movieId))) { [weak self] result in
+                    switch result {
+                    case .success(let response):
+                        do {
+                            let similarResponse = try JSONDecoder().decode(SimilarMovieDTO.self, from: response.data)
+                            self?.similarMovies = similarResponse.similarMovieResponse
+                            DispatchQueue.main.async {
+                                self?.similarCollectionView.reloadData()
+                            }
+                        } catch {
+                            print("Failed to decode: \(error.localizedDescription)")
+                        }
+                    case .failure(let error):
+                        print("Network request failed: \(error.localizedDescription)")
+                    }
+                }
+            }
+    }
+    
+    private func fetchSimilarTv(){
+        provider.request(.similarTV(seriesId: String("84773"))) { [weak self] result in
+            switch result {
+            case .success(let response):
+                do {
+                    let similarResponse = try JSONDecoder().decode(SimilarTvDTO.self, from: response.data)
+                    self?.similarTVShows = similarResponse.similarTvResponse
+                    DispatchQueue.main.async {
+                        self?.similarCollectionView.reloadData()
+                    }
+                } catch {
+                    print("Failed to decode: \(error.localizedDescription)")
+                }
+            case .failure(let error):
+                print("Network request failed: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func fetchGenres() {
+            let group = DispatchGroup()
+
+            group.enter()
+            provider.request(.genreMovie) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let genreResponse = try JSONDecoder().decode(GenreDTO.self, from: response.data)
+                        genreResponse.genres.forEach { self?.genreList[$0.id] = $0.name }
+                    } catch {
+                        print("Failed to decode movie genres: \(error.localizedDescription)")
+                    }
+                case .failure(let error):
+                    print("Failed to fetch movie genres: \(error.localizedDescription)")
+                }
+                group.leave()
+            }
+
+            group.enter()
+            provider.request(.genreTV) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let genreResponse = try JSONDecoder().decode(GenreDTO.self, from: response.data)
+                        genreResponse.genres.forEach { self?.genreList[$0.id] = $0.name }
+                    } catch {
+                        print("Failed to decode TV genres: \(error.localizedDescription)")
+                    }
+                case .failure(let error):
+                    print("Failed to fetch TV genres: \(error.localizedDescription)")
+                }
+                group.leave()
+            }
+
+            group.notify(queue: .main) {
+                print("Genres fetched successfully")
+                self.similarCollectionView.reloadData()
+            }
+        }
 }
 
 //MARK: - collectionView Delegate Datasource
 extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        var sectionsCount = DetailCollectionViewSections.allCases.count
+        let sectionsCount = DetailCollectionViewSections.allCases.count
         
         return sectionsCount
     }
@@ -38,11 +156,11 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         case .overview:
             1
         case .cast:
-            3
+            castData.count
         case .similarMovies:
-            10
-        case .recommendedMovies:
-            10
+            similarMovies.count
+        case .similarTv:
+            similarTVShows.count
         default:
             0
         }
@@ -56,13 +174,24 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
                                                                 for: indexPath) as? DetailInformationCollectionViewCell else {
                 return DetailInformationCollectionViewCell()
             }
-            
+            if let movie = resultMovieData {
+                cell.updateContent(
+                    title: movie.title,
+                    date: movie.releaseDate,
+                    genreIDs: movie.genreIDs,
+                    voteAverage: movie.voteAverage,
+                    genreList: genreList 
+                )
+            }
             return cell
             
         case .overview:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailOverviewCollectionViewCell.identifier,
                                                                 for: indexPath) as? DetailOverviewCollectionViewCell else {
                 return DetailOverviewCollectionViewCell()
+            }
+            if let movie = resultMovieData {
+                cell.updateContent(data: movie.overview)
             }
             
             return cell
@@ -72,6 +201,12 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
                                                                 for: indexPath) as? DetailCastCollectionViewCell else {
                 return DetailCastCollectionViewCell()
             }
+            let cast = castData[indexPath.row]
+            cell.updateContent(
+                profileImage: cast.profilePath ?? "",
+                name: cast.name,
+                character: cast.character ?? ""
+            )
             
             return cell
             
@@ -80,15 +215,19 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
                                                                 for: indexPath) as? PosterCollectionViewCell else {
                 return PosterCollectionViewCell()
             }
+            let movie = similarMovies[indexPath.row]
+            cell.updateContent(movie.posterPath ?? "")
             
             return cell
             
-        case .recommendedMovies:
+        case .similarTv:
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier,
                                                                 for: indexPath) as? PosterCollectionViewCell else {
                 return PosterCollectionViewCell()
             }
+            let tvShow = similarTVShows[indexPath.row]
+            cell.updateContent(tvShow.posterPath ?? "")
             
             return cell
             
@@ -137,7 +276,12 @@ extension DetailViewController: BaseViewProtocol {
     
     func configureUI() {
         view.backgroundColor = .white
-        poster.backgroundColor = .gray
+        poster.contentMode = .scaleAspectFill
+        if let movieData = resultMovieData {
+            poster.kf.setImage(with: TMDBRouter.image(imagePath: movieData.backdropPath).baseURL)
+        } else {
+            poster.image = UIImage(systemName: "star")
+        }
         configureCollectionView()
     }
     
@@ -178,7 +322,7 @@ fileprivate enum DetailCollectionViewSections: Int, CaseIterable {
     case overview
     case cast
     case similarMovies
-    case recommendedMovies
+    case similarTv
     
     var sectionTitle: String {
         switch self {
@@ -188,7 +332,7 @@ fileprivate enum DetailCollectionViewSections: Int, CaseIterable {
             return "출연진"
         case .similarMovies:
             return "비슷한 영화"
-        case .recommendedMovies:
+        case .similarTv:
             return "추천 영화"
         default:
             return ""
@@ -219,12 +363,12 @@ fileprivate enum DetailCollectionViewSections: Int, CaseIterable {
             
         case .overview:
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                  heightDimension: .estimated(200))
+                                                  heightDimension: .estimated(100))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .estimated(200))
+                                                   heightDimension: .estimated(100))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitems: [item])
             
@@ -276,7 +420,7 @@ fileprivate enum DetailCollectionViewSections: Int, CaseIterable {
             
             return section
             
-        case .similarMovies, .recommendedMovies:
+        case .similarMovies, .similarTv:
             
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                   heightDimension: .fractionalHeight(1.0))

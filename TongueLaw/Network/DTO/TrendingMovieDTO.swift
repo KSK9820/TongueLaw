@@ -29,6 +29,7 @@ struct TrendingMovieResponse: Decodable {
     let genreIDs: [Int]
     let voteAverage: Double
     let video: Bool
+    let releaseDate: String
 
     enum CodingKeys: String, CodingKey {
         case backdropPath = "backdrop_path"
@@ -38,5 +39,6 @@ struct TrendingMovieResponse: Decodable {
         case posterPath = "poster_path"
         case genreIDs = "genre_ids"
         case voteAverage = "vote_average"
+        case releaseDate = "release_date"
     }
 }

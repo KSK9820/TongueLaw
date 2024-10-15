@@ -77,7 +77,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             })
             .disposed(by: disposeBag)
             cell.updateContent(viewModel.randomMovie[indexPath.row])
-          
+            
             return cell
             
         case .recommendMovie:
@@ -115,7 +115,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        let detailVC = DetailViewController()
+        
+        switch HomeCollectionViewSections(rawValue: indexPath.section) {
+        case .main:
+            let selectedMovie = viewModel.randomMovie[indexPath.row]
+            detailVC.resultMovieData = selectedMovie
+            
+        case .recommendMovie:
+            let selectedMovie = viewModel.movies[indexPath.row]
+            detailVC.resultMovieData = selectedMovie
+            
+        case .recommendSeries:
+            let selectedSeries = viewModel.tvSeries[indexPath.row]
+            detailVC.resultTvData = selectedSeries
+            
+        default:
+            return
+        }
+        
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }
@@ -190,7 +209,7 @@ private enum HomeCollectionViewSections: Int, CaseIterable {
                                                    heightDimension: .fractionalWidth(1.3))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitems: [item])
-    
+            
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = .init(top: 16,
                                           leading: 16,

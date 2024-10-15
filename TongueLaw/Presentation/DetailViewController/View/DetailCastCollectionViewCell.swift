@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class DetailCastCollectionViewCell: UICollectionViewCell {
     
@@ -28,10 +29,11 @@ final class DetailCastCollectionViewCell: UICollectionViewCell {
 
 extension DetailCastCollectionViewCell {
     
-    func updateContent() {
-    
+    func updateContent(profileImage: String, name: String, character: String) {
+        profileImageView.kf.setImage(with: TMDBRouter.image(imagePath: profileImage).baseURL)
+        nameLabel.text = name
+        characterLabel.text = character
     }
-    
 }
 
 extension DetailCastCollectionViewCell: BaseViewProtocol {

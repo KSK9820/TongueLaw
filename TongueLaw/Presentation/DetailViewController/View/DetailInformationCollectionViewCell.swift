@@ -34,8 +34,16 @@ final class DetailInformationCollectionViewCell: UICollectionViewCell {
 
 extension DetailInformationCollectionViewCell {
     
-    func updateContent() {
-       
+    func updateContent(title: String, date: String, genreIDs: [Int], voteAverage: Double,  genreList: [Int: String]) {
+        titleLabel.text = title
+        dateLabel.text = date
+        genreLabel.text = getGenreNames(genreIDs: genreIDs, genreList: genreList)
+        voteAverageLabel.text = String(format: "%.1f", voteAverage)
+    }
+    
+    private func getGenreNames(genreIDs: [Int], genreList: [Int: String]) -> String {
+        let genreNames = genreIDs.compactMap { genreList[$0] }
+        return genreNames.joined(separator: ", ")
     }
     
     @objc private func playButtonClicked() {
@@ -63,15 +71,12 @@ extension DetailInformationCollectionViewCell: BaseViewProtocol {
         
         voteAverageLabel.font = .systemFont(ofSize: 14)
         voteAverageLabel.textColor = .lightGray
-        voteAverageLabel.text = "9.9"
         
         dateLabel.font = .systemFont(ofSize: 14)
         dateLabel.textColor = .lightGray
-        dateLabel.text = "2024.12.31"
         
         genreLabel.font = .systemFont(ofSize: 14)
         genreLabel.textColor = .lightGray
-        genreLabel.text = "코미디"
         
         playButton.buttonStyle(type: .play)
         saveButton.buttonStyle(type: .save)
@@ -129,8 +134,7 @@ extension DetailInformationCollectionViewCell: BaseViewProtocol {
     
     func configureGestureAndButtonActions() {
         playButton.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
-        
     }
-    
+
 }
 
