@@ -15,6 +15,7 @@ final class HomeViewController: UIViewController {
     private lazy var homeCollectionView = UICollectionView(frame: .zero,
                                                            collectionViewLayout: createCollectionViewLayout())
     
+    private let refreshControl = UIRefreshControl()
     private let viewModel = HomeViewModel()
     private var disposeBag = DisposeBag()
     
@@ -28,18 +29,13 @@ final class HomeViewController: UIViewController {
     private func bind() {
         let load = BehaviorSubject<Void>(value: ())
         
-        let input = HomeViewModel.Input(fetchData: load)
+        let input = HomeViewModel.Input(fetchData: load, refresh: refreshControl.rx.controlEvent(.valueChanged))
         let output = viewModel.transform(input)
         
-        output.trendMovies
+        output.signal
             .bind(with: self, onNext: { owner, value in
                 owner.homeCollectionView.reloadData()
-            })
-            .disposed(by: disposeBag)
-        
-        output.trendSeries
-            .bind(with: self, onNext: { owner, value in
-                owner.homeCollectionView.reloadData()
+                owner.refreshControl.endRefreshing()
             })
             .disposed(by: disposeBag)
     }
@@ -77,7 +73,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             })
             .disposed(by: disposeBag)
             cell.updateContent(viewModel.randomMovie[indexPath.row])
-          
+            
             return cell
             
         case .recommendMovie:
@@ -129,7 +125,7 @@ extension HomeViewController: BaseViewProtocol {
                                            target: self,
                                            action: nil)
         searchButton.tintColor = .black
-
+        
         searchButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 if let tabBarController = self?.tabBarController {
@@ -150,6 +146,7 @@ extension HomeViewController: BaseViewProtocol {
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         homeCollectionView.showsVerticalScrollIndicator = false
+        homeCollectionView.refreshControl = refreshControl
         
         homeCollectionView.register(MainRecommendCollectionViewCell.self, forCellWithReuseIdentifier: MainRecommendCollectionViewCell.identifier)
         homeCollectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
@@ -204,7 +201,7 @@ private enum HomeCollectionViewSections: Int, CaseIterable {
                                                    heightDimension: .fractionalWidth(1.3))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitems: [item])
-    
+            
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = .init(top: 16,
                                           leading: 16,
