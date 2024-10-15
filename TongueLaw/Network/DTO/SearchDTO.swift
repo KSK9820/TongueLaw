@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - SearchDTO
 struct SearchDTO: Decodable {
-    let page: Int
-    let searchResponse: [SearchResponse]
+    var page: Int
+    var searchResponse: [SearchResponse]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
