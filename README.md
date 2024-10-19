@@ -97,5 +97,49 @@
     ```
     
 
+<br/>
+
 ## 트러블 슈팅
-[🚀MVVM으로 변경](https://github.com/KSK9820/TongueLaw/wiki/%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85-%E2%80%90-View%EC%97%90-%ED%91%9C%EC%8B%9C%ED%95%A0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-View%EA%B0%80-%EA%B0%80%EC%A7%80%EA%B3%A0-%EC%9E%88%EB%8A%94-%EA%B2%83%EC%9D%B4-%EB%A7%9E%EC%9D%84%EA%B9%8C%3F)
+
+### CollectionView의 PrefetchAction은 View가 알아야할까 ViewModel이 알아야할까?
+- RxSwift를 사용해서 CollectionView를 활용할 때, 결과값에 따른 layout의 차이가 있었기 때문에 RxDataSource를 사용하거나 CollectionViewDelegate를 사용할 수 있습니다.
+- RxDataSource는 bind 메서드 등을 통해서 바로 CollectionView에 표시할 수 있는 장점이 있지만 외부 라이브러리의 의존도를 줄이기 위해서 CollectionViewDelegate를 사용하는 방법을 택했습니다. 이 때 검색 결과의 pagination시 `PrefetchAction을 어떻게 ViewModel에게 전달할까?` 라는 의견 충돌이 발생했습니다.
+
+- 기본적으로 prefetch와 새로운 검색은 `SearchBar.rx.text가 변경되느냐`, `변경되지 않느냐`로 구분하였습니다.
+<br/>
+
+**[방법 1. View의 SearchBar.rx.text를 저장하는 publisher를 view가 갖고, 해당 값에 변경의 유무에 따라 ViewModel에게 전달한다.]**
+```swift
+// ViewController
+private var searchTextKeyword = PublishSubject<String>()
+
+// prefetch시 값 변경이 있을 경우에 VC가 갖고 있는 Publisher에게 값을 전달하고, Publisher가 VM에게 이벤트 발생을 전달합니다.
+searchBar.rx.text
+    .orEmpty
+    .debounce(.seconds(1), scheduler: MainScheduler.instance)
+    .distinctUntilChanged()
+    .subscribe(onNext: { [weak self] query in
+        self?.searchTextKeyword.onNext(query)
+    })
+    .disposed(by: disposeBag)
+```
+<br/>
+
+**[방법 2. View의 SearchBar.rx.text의 변경과, prefetch Action을 결합한 값을 ViewModel에게 전달한다.]**
+
+```swift
+// SearchViewController의 binding 메서드에서 SearchBar.rx.texprefetch Action을 결합한 값인 mergedSearchKeyword의 이벤트를 ViewModel에게 방출
+let searchKeyword = searchBar.rx.text
+    .orEmpty
+    .debounce(.seconds(1), scheduler: MainScheduler.instance)
+    .distinctUntilChanged()
+let prefetchAction = ControlEvent<Void>(events: prefetchAction)
+let mergedSearchKeyword = Observable.merge(searchKeyword, prefetchAction.withLatestFrom(searchKeyword))
+```
+<br/>
+
+**[결론]**
+- 팀원들과 토론한 결과 [방법1]은 View에 데이터를 직접 가지고 있는 것은 비효율적이며, MVVM 패턴의 이점을 살리지 못하는 방향이라고 판단했하였고, UI의 역할은 데이터의 시각적 표현과 이벤트의 전달에만 집중하도록 만들고, 비즈니스 로직과 데이터 관리는 ViewModel이 전담하는 [방법2]를 선택 했습니다. 
+- 그리고 [방법2]를 선택했을 때 다음과 같은 이점이 있었습니다.
+  - ViewModel을 통해 데이터를 관리하니, UI 변경이나 버그 수정 시에도 빠른 피드백이 가능했습니다.
+  - 덕분에 각 팀원 간의 원활한 의사소통과 피드백 루프가 형성되었습니다.
